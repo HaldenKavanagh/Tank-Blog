@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div className="homePage">
-      <p>homepage, showing all posts and tags to filter the post by</p>
+      <p>homepage, explains the site and has some featured posts</p>
     </div>
   );
 }

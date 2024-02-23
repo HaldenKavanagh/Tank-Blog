@@ -21,6 +21,36 @@ function NavTabs() {
       >
         <p>Home</p>
       </Link>
+      <Link
+        to="/feed"
+        className={
+          getPageName(location.pathname) === "Feed"
+            ? "nav-link active"
+            : "nav-link"
+        }
+      >
+        <p>feed</p>
+      </Link>
+      <Link
+        to="/create"
+        className={
+          getPageName(location.pathname) === "Create"
+            ? "nav-link active"
+            : "nav-link"
+        }
+      >
+        <p>Create a Post</p>
+      </Link>
+      <Link
+        to="/profile"
+        className={
+          getPageName(location.pathname) === "Profile"
+            ? "nav-link active"
+            : "nav-link"
+        }
+      >
+        <p>Profile</p>
+      </Link>
     </div>
   );
 }
