@@ -4,6 +4,12 @@ const { User, Post } = require("../models");
 
 const resolvers = {
   Query: {
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      throw AuthenticationError;
+    },
     getUser: async (_, { userId }) => {
       // Retrieve a user by ID
       return await User.findById(userId);
@@ -70,16 +76,9 @@ const resolvers = {
           throw new Error("Password must be at least 5 characters long.");
         }
 
-        // Add console.log to check input values
-        console.log("Creating user with:", username, email, password);
-
         const user = await User.create({ username, email, password });
 
-        // Add console.log to check the user object
-        console.log("Created user:", user);
-
         const token = signToken(user);
-        console.log("Generated Token:", token);
 
         const userWithFields = {
           id: user.id,
@@ -89,7 +88,10 @@ const resolvers = {
           following: user.following,
         };
 
-        return userWithFields;
+        return {
+          token,
+          user: userWithFields,
+        };
       } catch (error) {
         throw new Error(error.message);
       }

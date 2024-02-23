@@ -29,6 +29,7 @@ const typeDefs = `
   }
 
   type Query {
+    me: User
     getUser(userId: ID!): User
     getAllUsers: [User]
     getPost(postId: ID!): Post
@@ -45,7 +46,7 @@ const typeDefs = `
     addComment(postId: ID!, commentBody: String!, username: String!): Post
     updateComment(postId: ID!, commentId: ID!, commentBody: String!): Post
     deleteUser(userId: ID!): User
-    createUser(username: String!, email: String!, password: String!): User
+    createUser(username: String!, email: String!, password: String!): Auth
     updateUser(userId: ID!, username: String!): User
     addFriend(userId: ID!, friendId: ID!): User
     removeFriend(userId: ID!, friendId: ID!): User
