@@ -9,7 +9,6 @@ const resolvers = {
       return await User.findById(userId);
     },
     getAllUsers: async () => {
-      // Retrieve all users
       return await User.find();
     },
     getPost: async (_, { postId }) => {
@@ -23,10 +22,11 @@ const resolvers = {
   },
 
   Mutation: {
-    createPost: async (_, { postBody, username }) => {
+    createPost: async (_, { postBody, postTitle, username }) => {
       // Create a new post
       const newPost = new Post({
         postBody,
+        postTitle,
         username: [username],
       });
 
@@ -97,6 +97,78 @@ const resolvers = {
       // Delete a user by ID
       return await User.findByIdAndDelete(userId);
     },
+    updatePost: async (_, { postId, postBody, postTitle }) => {
+      return await Post.findByIdAndUpdate(
+        postId,
+        { postBody, postTitle },
+        { new: true }
+      );
+    },
+    updateUser: async (_, { userId, username }) => {
+      return await User.findByIdAndUpdate(userId, { username }, { new: true });
+    },
+    updateComment: async (_, { postId, commentId, commentBody }) => {
+      const post = await Post.findById(postId);
+
+      if (!post) {
+        throw new Error("Post not found");
+      }
+
+      const comment = post.comments.id(commentId);
+
+      if (!comment) {
+        throw new Error("Comment not found");
+      }
+
+      comment.commentBody = commentBody;
+
+      await post.save();
+
+      return post;
+    },
+    removeFriend: async (_, { userId, friendId }) => {
+      const user = await User.findById(userId);
+
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      const friendIndex = user.following.indexOf(friendId);
+
+      if (friendIndex !== -1) {
+        user.following.splice(friendIndex, 1);
+
+        await user.save();
+      }
+
+      return user;
+    },
+    // login: async (parent, { email, password }) => {
+    //   try {
+    //     const user = await User.findOne({ email });
+    //     if (!user) {
+    //       throw new AuthenticationError("Incorrect email or password");
+    //     }
+    //     const correctPassword = await user.isCorrectPassword(password);
+    //     if (!correctPassword) {
+    //       throw new AuthenticationError("Incorrect email or password");
+    //     }
+    //     const token = signToken(user);
+    //     return { token, user };
+    //   } catch (error) {
+    //     throw new Error(error.message);
+    //   }
+    // },
+    // logout: async (parent, args, context) => {
+    //   try {
+    //     if (context.user) {
+    //       return { message: "Logged out successfully" };
+    //     }
+    //     throw new AuthenticationError("Not logged in");
+    //   } catch (error) {
+    //     throw new Error(error.message);
+    //   }
+    // },
   },
 };
 

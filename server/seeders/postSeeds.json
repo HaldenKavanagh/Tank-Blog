@@ -1,6 +1,12 @@
 [
   {
     "postBody": "yadayadayadayadayadayadayadyadyadyadyadyadyaydayda",
+    "postTitle": "yesyes post 1",
+    "username": "userOne"
+  },
+  {
+    "postBody": "rrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+    "postTitle": "yesyes post 2",
     "username": "userOne"
   }
 ]

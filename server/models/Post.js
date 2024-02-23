@@ -38,16 +38,19 @@ const postSchema = new Schema(
       minlength: 1,
       maxlength: 280,
     },
+    postTitle: {
+      type: String,
+      required: true,
+      maxlength: 50,
+    },
     createdAt: {
       type: Date,
       default: Date.now,
     },
-    username: [
-      {
-        type: String,
-        required: true,
-      },
-    ],
+    username: {
+      type: String,
+      required: true,
+    },
     comments: [commentSchema],
   },
   {
@@ -57,7 +60,6 @@ const postSchema = new Schema(
     id: false,
   }
 );
-
 
 postSchema.virtual("commentCount").get(function () {
   return this.comments.length;
