@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER, ADD_USER } from "../utils/mutations";
+import { LOGIN_USER } from "../utils/mutations";
 
 function Login() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+
+  const handleCreateAcc = () => {
+    window.location.href = "/create-acc";
+  };
 
   const [loginUser] = useMutation(LOGIN_USER);
 
@@ -52,6 +56,7 @@ function Login() {
         />
 
         <button onClick={handleLogin}>Login</button>
+        <button onClick={handleCreateAcc}>Create an account</button>
       </div>
     </div>
   );

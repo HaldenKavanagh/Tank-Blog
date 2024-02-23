@@ -34,9 +34,9 @@ function NavTabs() {
         <p>feed</p>
       </Link>
       <Link
-        to="/create"
+        to="/create-post"
         className={
-          getPageName(location.pathname) === "Create"
+          getPageName(location.pathname) === "CreatePost"
             ? "nav-link active"
             : "nav-link"
         }

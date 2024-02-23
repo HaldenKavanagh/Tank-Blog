@@ -1,4 +1,5 @@
 const { signToken, AuthenticationError } = require("../utils/auth");
+const mongoose = require("mongoose");
 const { User, Post } = require("../models");
 
 const resolvers = {
@@ -60,22 +61,38 @@ const resolvers = {
 
       return newPost;
     },
-    createUser: async (_, { username, email, password }) => {
-      // Create a new user
-      const newUser = new User({
-        username,
-        email,
-        password,
-      });
+    createUser: async (parent, { username, email, password }) => {
+      try {
+        if (!username || !email || !password) {
+          throw new Error("All fields are required.");
+        }
+        if (password.length < 5) {
+          throw new Error("Password must be at least 5 characters long.");
+        }
 
-      // Hash the password before saving it to the database
-      const saltRounds = 10;
-      newUser.password = await bcrypt.hash(newUser.password, saltRounds);
+        // Add console.log to check input values
+        console.log("Creating user with:", username, email, password);
 
-      // Save the user to the database
-      await newUser.save();
+        const user = await User.create({ username, email, password });
 
-      return newUser;
+        // Add console.log to check the user object
+        console.log("Created user:", user);
+
+        const token = signToken(user);
+        console.log("Generated Token:", token);
+
+        const userWithFields = {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          posts: user.posts,
+          following: user.following,
+        };
+
+        return userWithFields;
+      } catch (error) {
+        throw new Error(error.message);
+      }
     },
     deletePost: async (_, { postId }) => {
       // Delete a post by ID
