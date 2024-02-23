@@ -1,5 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 
+import "../styles/NavTabs.css";
+
 function NavTabs() {
   const location = useLocation();
 
@@ -50,6 +52,16 @@ function NavTabs() {
         }
       >
         <p>Profile</p>
+      </Link>
+      <Link
+        to="/Login"
+        className={
+          getPageName(location.pathname) === "Login"
+            ? "nav-link active"
+            : "nav-link"
+        }
+      >
+        <p>Login</p>
       </Link>
     </div>
   );

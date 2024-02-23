@@ -1,6 +1,5 @@
-// const { signToken, AuthenticationError } = require("../utils/auth");
+const { signToken, AuthenticationError } = require("../utils/auth");
 const { User, Post } = require("../models");
-const bcrypt = require("bcrypt");
 
 const resolvers = {
   Query: {
@@ -22,6 +21,32 @@ const resolvers = {
   },
 
   Mutation: {
+    login: async (parent, { email, password }) => {
+      try {
+        const user = await User.findOne({ email });
+        if (!user) {
+          throw new AuthenticationError("Incorrect email or password");
+        }
+        const correctPassword = await user.isCorrectPassword(password);
+        if (!correctPassword) {
+          throw new AuthenticationError("Incorrect email or password");
+        }
+        const token = signToken(user);
+        return { token, user };
+      } catch (error) {
+        throw new Error(error.message);
+      }
+    },
+    logout: async (parent, args, context) => {
+      try {
+        if (context.user) {
+          return { message: "Logged out successfully" };
+        }
+        throw new AuthenticationError("Not logged in");
+      } catch (error) {
+        throw new Error(error.message);
+      }
+    },
     createPost: async (_, { postBody, postTitle, username }) => {
       // Create a new post
       const newPost = new Post({
@@ -143,32 +168,6 @@ const resolvers = {
 
       return user;
     },
-    // login: async (parent, { email, password }) => {
-    //   try {
-    //     const user = await User.findOne({ email });
-    //     if (!user) {
-    //       throw new AuthenticationError("Incorrect email or password");
-    //     }
-    //     const correctPassword = await user.isCorrectPassword(password);
-    //     if (!correctPassword) {
-    //       throw new AuthenticationError("Incorrect email or password");
-    //     }
-    //     const token = signToken(user);
-    //     return { token, user };
-    //   } catch (error) {
-    //     throw new Error(error.message);
-    //   }
-    // },
-    // logout: async (parent, args, context) => {
-    //   try {
-    //     if (context.user) {
-    //       return { message: "Logged out successfully" };
-    //     }
-    //     throw new AuthenticationError("Not logged in");
-    //   } catch (error) {
-    //     throw new Error(error.message);
-    //   }
-    // },
   },
 };
 

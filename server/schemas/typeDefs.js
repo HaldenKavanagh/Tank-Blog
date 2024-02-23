@@ -23,6 +23,11 @@ const typeDefs = `
     comments: [Comment]!
   }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Query {
     getUser(userId: ID!): User
     getAllUsers: [User]
@@ -31,6 +36,9 @@ const typeDefs = `
   }
 
   type Mutation {
+    
+    login(email: String!, password: String!): Auth
+    logout: Message
     createPost(postBody: String!, postTitle: String!, username: String!): Post
     updatePost(postId: ID!, postBody: String!, postTitle: String!): Post
     deletePost(postId: ID!): Post
@@ -41,6 +49,10 @@ const typeDefs = `
     updateUser(userId: ID!, username: String!): User
     addFriend(userId: ID!, friendId: ID!): User
     removeFriend(userId: ID!, friendId: ID!): User
+  }
+
+  type Message {
+    message: String
   }
 `;
 
