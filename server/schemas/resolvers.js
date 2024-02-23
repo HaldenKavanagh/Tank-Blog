@@ -1,5 +1,6 @@
 // const { signToken, AuthenticationError } = require("../utils/auth");
 const { User, Post } = require("../models");
+const bcrypt = require("bcrypt");
 
 const resolvers = {
   Query: {
@@ -34,6 +35,23 @@ const resolvers = {
 
       return newPost;
     },
+    createUser: async (_, { username, email, password }) => {
+      // Create a new user
+      const newUser = new User({
+        username,
+        email,
+        password,
+      });
+
+      // Hash the password before saving it to the database
+      const saltRounds = 10;
+      newUser.password = await bcrypt.hash(newUser.password, saltRounds);
+
+      // Save the user to the database
+      await newUser.save();
+
+      return newUser;
+    },
     deletePost: async (_, { postId }) => {
       // Delete a post by ID
       return await Post.findByIdAndDelete(postId);
@@ -55,6 +73,25 @@ const resolvers = {
       await post.save();
 
       return post;
+    },
+    addFriend: async (_, { userId, friendId }) => {
+      // Add a friend to a user
+      const user = await User.findById(userId);
+      const friend = await User.findById(friendId);
+
+      if (!user || !friend) {
+        throw new Error("User or friend not found");
+      }
+
+      // Check if the friend is already in the user's friends list
+      if (!user.following.includes(friendId)) {
+        user.following.push(friendId);
+      }
+
+      // Save the updated user with the new friend
+      await user.save();
+
+      return user;
     },
     deleteUser: async (_, { userId }) => {
       // Delete a user by ID

@@ -35,6 +35,8 @@ const typeDefs = `
     deletePost(postId: ID!): Post
     addComment(postId: ID!, commentBody: String!, username: String!): Post
     deleteUser(userId: ID!): User
+    createUser(username: String!, email: String!, password: String!): User
+  addFriend(userId: ID!, friendId: ID!): User
   }
 `;
 
