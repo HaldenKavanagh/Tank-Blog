@@ -8,7 +8,9 @@ export const QUERY_POSTS = gql`
       postTitle
       createdAt
       username
-      comments
+      comments {
+        commentBody
+      }
     }
   }
 `;
