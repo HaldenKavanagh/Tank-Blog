@@ -1,10 +1,11 @@
 const typeDefs = `
   type User {
-    id: ID!
+    _id: ID
     username: String!
     email: String!
     posts: [Post]!
     following: [User]!
+    password: String
   }
 
   type Comment {
@@ -40,14 +41,18 @@ const typeDefs = `
     
     login(email: String!, password: String!): Auth
     logout: Message
+
     createPost(postBody: String!, postTitle: String!, username: String!): Post
     updatePost(postId: ID!, postBody: String!, postTitle: String!): Post
     deletePost(postId: ID!): Post
+
     addComment(postId: ID!, commentBody: String!, username: String!): Post
     updateComment(postId: ID!, commentId: ID!, commentBody: String!): Post
+
     deleteUser(userId: ID!): User
     createUser(username: String!, email: String!, password: String!): Auth
     updateUser(userId: ID!, username: String!): User
+
     addFriend(userId: ID!, friendId: ID!): User
     removeFriend(userId: ID!, friendId: ID!): User
   }

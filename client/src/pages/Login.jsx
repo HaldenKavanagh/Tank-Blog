@@ -17,13 +17,18 @@ function Login() {
   };
 
   const handleLogin = async () => {
+    console.log("in handlelogin");
     try {
       const { data } = await loginUser({
         variables: { email: loginEmail, password: loginPassword },
       });
+      console.log("data");
       console.log(data);
 
       const token = data?.login?.token;
+
+      console.log("token");
+      console.log(token);
 
       if (token) {
         // Store the token in local storage
