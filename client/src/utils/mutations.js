@@ -24,3 +24,22 @@ export const CREATE_USER = gql`
     }
   }
 `;
+
+export const CREATE_POST = gql`
+  mutation CreatePost(
+    $postBody: String!
+    $postTitle: String!
+    $username: String!
+  ) {
+    createPost(
+      postBody: $postBody
+      postTitle: $postTitle
+      username: $username
+    ) {
+      _id
+      createdAt
+      postBody
+      postTitle
+    }
+  }
+`;

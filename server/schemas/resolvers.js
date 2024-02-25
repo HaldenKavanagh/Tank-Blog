@@ -59,7 +59,7 @@ const resolvers = {
       const newPost = new Post({
         postBody,
         postTitle,
-        username: [username],
+        username,
       });
 
       // Save the post to the database
