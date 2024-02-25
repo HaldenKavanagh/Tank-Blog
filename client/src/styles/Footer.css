@@ -1,7 +1,16 @@
 .footer {
-    background: var(--dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top: 5px solid var(--light);
-  }
+  background: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 5px solid var(--light);
+  height: 7vh;
+}
+
+.custom-input {
+  background-color: var(--light);
+  margin-bottom: 10px;
+  width: 30vw;
+  height: 5vh;
+  border-radius: 10px;
+}

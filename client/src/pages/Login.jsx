@@ -1,3 +1,5 @@
+import "../styles/Login.css";
+
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
@@ -44,9 +46,10 @@ function Login() {
   };
 
   return (
-    <div>
-      <div className="logIn">
+    <div className="logIn">
+      <div className="logInForm">
         <input
+          className="custom-input"
           type="text"
           placeholder="Email"
           value={loginEmail}
@@ -54,6 +57,7 @@ function Login() {
         />
 
         <input
+          className="custom-input"
           type="password"
           placeholder="Password"
           value={loginPassword}
@@ -61,7 +65,10 @@ function Login() {
         />
 
         <button onClick={handleLogin}>Login</button>
-        <button onClick={handleCreateAcc}>Create an account</button>
+
+        <div className="createAccountButton">
+          <button onClick={handleCreateAcc}>Create an account</button>
+        </div>
       </div>
     </div>
   );

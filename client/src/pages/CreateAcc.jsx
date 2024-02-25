@@ -41,7 +41,7 @@ export default function CreateAccount() {
   return (
     <div className="createAccountPage">
       <div className="createAccount">
-        <form onSubmit={handleCreateUser}>
+        <form  onSubmit={handleCreateUser}>
           <input
             type="text"
             placeholder="Username"
