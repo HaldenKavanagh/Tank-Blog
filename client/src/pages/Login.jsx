@@ -8,6 +8,13 @@ function Login() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
+  const handleLogout = () => {
+    localStorage.removeItem("id_token");
+    alert("Logging out...Successful. Have a good day!");
+    //redirect
+    console.log("Logged out");
+  };
+
   const handleCreateAcc = () => {
     window.location.href = "/create-acc";
   };
@@ -65,6 +72,7 @@ function Login() {
         />
 
         <button onClick={handleLogin}>Login</button>
+        <button onClick={handleLogout}>Logout</button>
 
         <div className="createAccountButton">
           <button onClick={handleCreateAcc}>Create an account</button>

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_POST } from "../utils/mutations";
+
+import AuthService from "../utils/auth";
 
 export default function CreatePost() {
   const [username, setUsername] = useState("");
@@ -9,10 +11,23 @@ export default function CreatePost() {
 
   const [createPost, { loading, error }] = useMutation(CREATE_POST);
 
+  const redirectToLogin = () => {
+    // Redirect to the login page
+    window.location.href = "/login";
+  };
+
   const redirectToFeed = () => {
     // Consider using React Router for navigation
     window.location.href = "/feed";
   };
+
+  useEffect(() => {
+    // Check if the user is logged in when the component mounts
+    if (!AuthService.loggedIn()) {
+      redirectToLogin();
+      alert("Login or create an account to post");
+    }
+  }, []);
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
