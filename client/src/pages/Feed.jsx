@@ -1,3 +1,5 @@
+import "../styles/Feed.css";
+
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_POSTS } from "../utils/queries";
@@ -34,18 +36,17 @@ export default function Feed() {
   return (
     <ErrorBoundary>
       <div className="feedPage">
-        <p>Feed page</p>
-        <div>
+        <div className="container">
           {loading ? (
             <div>Loading...</div>
           ) : (
             <>
               {posts.map((post) => (
-                <div key={post._id}>
-                  <p>Author: {post.username}</p>
-                  <p>{post.postTitle}</p>
-                  <p>{post.postBody}</p>
-                  <p>{post.createdAt}</p>
+                <div className="postCard" key={post._id}>
+                  <p className="postTitle">{post.postTitle}</p>
+                  <p className="postUsername">Author: {post.username}</p>
+                  <p className="postBody">{post.postBody}</p>
+                  <p className="postCreatedAt">{post.createdAt}</p>
                 </div>
               ))}
             </>
