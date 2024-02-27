@@ -1,3 +1,5 @@
+import "../styles/CreateAcc.css";
+
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../utils/mutations";
@@ -40,35 +42,51 @@ export default function CreateAccount() {
 
   return (
     <div className="createAccountPage">
+      <h1 className="contact-title">Create an account</h1>
       <div className="createAccount">
-        <form  onSubmit={handleCreateUser}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+        <form onSubmit={handleCreateUser}>
+          <label htmlFor="username">Username:</label>
+          <div>
+            <input
+              type="text"
+              placeholder="Username"
+              className="custom-input"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <label htmlFor="email">Email:</label>
+          <div>
+            <input
+              type="text"
+              placeholder="Email"
+              className="custom-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-          <input
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <label htmlFor="password">Password:</label>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              className="custom-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
-          <button type="submit" disabled={loading}>
+          <button className="submit-btn" type="submit" disabled={loading}>
             {loading ? "Creating Account..." : "Create Account"}
           </button>
+          <button className="createButton" onClick={redirectToLogin}>
+            Back to login
+          </button>
         </form>
-
-        {error && <p>Error: {error.message}</p>}
+        {error && (
+          <p style={{ color: "red" }}>Error: Please fill out all fields</p>
+        )}
       </div>
     </div>
   );

@@ -8,13 +8,6 @@ function Login() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const handleLogout = () => {
-    localStorage.removeItem("id_token");
-    alert("Logging out...Successful. Have a good day!");
-    //redirect
-    console.log("Logged out");
-  };
-
   const handleCreateAcc = () => {
     window.location.href = "/create-acc";
   };
@@ -54,7 +47,9 @@ function Login() {
 
   return (
     <div className="logIn">
+      <h1 className="contact-title">Login</h1>
       <div className="logInForm">
+      <label htmlFor="email">Email:</label>
         <input
           className="custom-input"
           type="text"
@@ -62,6 +57,7 @@ function Login() {
           value={loginEmail}
           onChange={(e) => setLoginEmail(e.target.value)}
         />
+        <label htmlFor="email">Password:</label>
 
         <input
           className="custom-input"
@@ -71,12 +67,13 @@ function Login() {
           onChange={(e) => setLoginPassword(e.target.value)}
         />
 
-        <button onClick={handleLogin}>Login</button>
-        <button onClick={handleLogout}>Logout</button>
+        <button className="button" onClick={handleLogin}>
+          Login
+        </button>
 
-        <div className="createAccountButton">
-          <button onClick={handleCreateAcc}>Create an account</button>
-        </div>
+        <button className="createButton" onClick={handleCreateAcc}>
+          Create An Account
+        </button>
       </div>
     </div>
   );
