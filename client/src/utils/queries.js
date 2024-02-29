@@ -61,3 +61,39 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+export const GET_LOGGED_IN_USER = gql`
+  query getLoggedInUser {
+    me {
+      _id
+      username
+      email
+      posts {
+        _id
+        postTitle
+        postBody
+        createdAt
+      }
+      following {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+
+export const GET_USER_POSTS = gql`
+  query getUserPosts($userId: ID!) {
+    getUser(userId: $userId) {
+      _id
+      username
+      posts {
+        _id
+        postTitle
+        postBody
+        createdAt
+      }
+    }
+  }
+`;

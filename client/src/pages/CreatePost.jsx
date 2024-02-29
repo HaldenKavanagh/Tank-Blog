@@ -5,29 +5,32 @@ import { CREATE_POST } from "../utils/mutations";
 import AuthService from "../utils/auth";
 
 export default function CreatePost() {
-  const [username, setUsername] = useState("");
-  const [postTitle, setPostTitle] = useState("");
-  const [postBody, setPostBody] = useState("");
-
-  const [createPost, { loading, error }] = useMutation(CREATE_POST);
-
   const redirectToLogin = () => {
     // Redirect to the login page
     window.location.href = "/login";
   };
 
-  const redirectToFeed = () => {
-    // Consider using React Router for navigation
-    window.location.href = "/feed";
-  };
-
   useEffect(() => {
     // Check if the user is logged in when the component mounts
-    if (!AuthService.loggedIn()) {
+    if (AuthService.loggedIn()) {
+      setUsername(AuthService.getUser().data.username);
+    } else {
       redirectToLogin();
       alert("Login or create an account to post");
     }
   }, []);
+
+  const [username, setUsername] = useState("");
+  const [postTitle, setPostTitle] = useState("");
+  const [postBody, setPostBody] = useState("");
+
+  console.log(username);
+  const [createPost, { loading, error }] = useMutation(CREATE_POST);
+
+  const redirectToFeed = () => {
+    // Consider using React Router for navigation
+    window.location.href = "/feed";
+  };
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
@@ -58,12 +61,12 @@ export default function CreatePost() {
     <div className="createPostPage">
       <div className="createPost">
         <form onSubmit={handleCreatePost}>
-          <input
+          {/* <input
             type="text"
             placeholder="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-          />
+          /> */}
 
           <input
             type="text"

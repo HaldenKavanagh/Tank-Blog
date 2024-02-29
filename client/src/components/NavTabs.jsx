@@ -38,16 +38,7 @@ function NavTabs() {
 
   return (
     <div className="navbar">
-      <Link
-        to="/home"
-        className={
-          getPageName(location.pathname) === "Home"
-            ? "nav-link active"
-            : "nav-link"
-        }
-      >
-        <p>Home</p>
-      </Link>
+      
       <Link
         to="/feed"
         className={

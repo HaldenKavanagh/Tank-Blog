@@ -43,3 +43,13 @@ export const CREATE_POST = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation updateUser($username: String!) {
+    updateUser(username: $username) {
+      _id
+      username
+      email
+    }
+  }
+`;
