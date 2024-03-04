@@ -29,6 +29,19 @@ const commentSchema = new Schema(
   }
 );
 
+const imageSchema = new Schema(
+  {
+    filename: String,
+    path: String,
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  }
+);
+
 const postSchema = new Schema(
   {
     postBody: {
@@ -52,6 +65,7 @@ const postSchema = new Schema(
       required: true,
     },
     comments: [commentSchema],
+    images: [imageSchema],
   },
   {
     toJSON: {
