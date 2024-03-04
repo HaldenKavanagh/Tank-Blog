@@ -30,46 +30,46 @@ const resolvers = {
   },
 
   Mutation: {
-    createPostWithImage: async (
-      _,
-      { postBody, postTitle, username, images }
-    ) => {
-      // Create a new post
-      const newPost = new Post({
-        postBody,
-        postTitle,
-        username,
-        images: [], // Initialize images array
-      });
+    // createPostWithImage: async (
+    //   _,
+    //   { postBody, postTitle, username, images }
+    // ) => {
+    //   // Create a new post
+    //   const newPost = new Post({
+    //     postBody,
+    //     postTitle,
+    //     username,
+    //     images: [], // Initialize images array
+    //   });
 
-      // Process the uploaded images
-      if (images && images.length > 0) {
-        images.forEach(async (imageInput) => {
-          const { createReadStream, filename } = await imageInput.file;
-          const stream = createReadStream();
-          const filePath = path.join(__dirname, `../uploads/${filename}`);
+    //   // Process the uploaded images
+    //   if (images && images.length > 0) {
+    //     images.forEach(async (imageInput) => {
+    //       const { createReadStream, filename } = await imageInput.file;
+    //       const stream = createReadStream();
+    //       const filePath = path.join(__dirname, `../uploads/${filename}`);
 
-          // Save the image file
-          await new Promise((resolve, reject) =>
-            stream
-              .pipe(fs.createWriteStream(filePath))
-              .on("finish", resolve)
-              .on("error", reject)
-          );
+    //       // Save the image file
+    //       await new Promise((resolve, reject) =>
+    //         stream
+    //           .pipe(fs.createWriteStream(filePath))
+    //           .on("finish", resolve)
+    //           .on("error", reject)
+    //       );
 
-          // Add the image path to the post
-          newPost.images.push({
-            filename,
-            path: filePath,
-          });
-        });
-      }
+    //       // Add the image path to the post
+    //       newPost.images.push({
+    //         filename,
+    //         path: filePath,
+    //       });
+    //     });
+    //   }
 
-      // Save the post to the database
-      await newPost.save();
+    //   // Save the post to the database
+    //   await newPost.save();
 
-      return newPost;
-    },
+    //   return newPost;
+    // },
     login: async (parent, { email, password }) => {
       try {
         const user = await User.findOne({ email });

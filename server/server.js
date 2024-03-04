@@ -10,7 +10,7 @@ const { authMiddleware } = require("./utils/auth");
 
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
-const { upload } = require("./utils/multerMiddleware");
+// const { upload } = require("./utils/multerMiddleware");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -20,11 +20,11 @@ const server = new ApolloServer({
   resolvers,
 });
 
-app.post("/upload", upload.single("image"), (req, res) => {
-  // Handle the uploaded image, save file path in the database, and respond as needed
-  const imagePath = req.file.path;
-  res.json({ imagePath: imagePath });
-});
+// app.post("/upload", upload.single("image"), (req, res) => {
+//   // Handle the uploaded image, save file path in the database, and respond as needed
+//   const imagePath = req.file.path;
+//   res.json({ imagePath: imagePath });
+// });
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {

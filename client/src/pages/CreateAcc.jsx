@@ -19,25 +19,27 @@ export default function CreateAccount() {
   const handleCreateUser = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
 
-    try {
-      console.log("Creating user with:", username, email, password);
-      const { data } = await createUser({
-        variables: { username, password, email },
-      });
+  try {
+    console.log("Creating user with:", username, email, password);
+    const { data } = await createUser({
+      variables: { username, password, email },
+    });
 
-      const token = data?.createUser?.token;
-      console.log(token);
+    console.log("Server Response:", data);
 
-      if (token) {
-        console.log("Account created successfully");
-        alert("Account created successfully!");
-        redirectToLogin();
-      } else {
-        alert("Failed to create account");
-      }
-    } catch (error) {
-      console.error("Error:", error.message || "An error occurred");
+    const token = data?.createUser?.token;
+
+    if (token) {
+      console.log("Account created successfully");
+      alert("Account created successfully!");
+      redirectToLogin();
+    } else {
+      console.error("Token not present in the server response");
+      alert("Failed to create account. Please try again.");
     }
+  } catch (error) {
+    console.error("Error:", error.message || "An error occurred");
+  }
   };
 
   return (
