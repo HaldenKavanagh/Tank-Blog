@@ -10,11 +10,9 @@ import { Outlet } from "react-router-dom";
 import NavTabs from "./components/NavTabs";
 import Footer from "./components/Footer";
 
-
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
-
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -36,12 +34,11 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      
-        <main>
-          <NavTabs />
-          <Outlet />
-        </main>
-      
+      <main>
+        <NavTabs />
+        <Outlet />
+      </main>
+
       <Footer />
     </ApolloProvider>
   );

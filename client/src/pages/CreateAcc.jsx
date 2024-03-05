@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../utils/mutations";
 
-export default function CreateAccount() {
+function CreateAccount() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,27 +19,31 @@ export default function CreateAccount() {
   const handleCreateUser = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
 
-  try {
-    console.log("Creating user with:", username, email, password);
-    const { data } = await createUser({
-      variables: { username, password, email },
-    });
+    try {
+      console.log("Creating user with:", username, email, password);
+      const { data } = await createUser({
+        variables: { username, password, email },
+      });
 
-    console.log("Server Response:", data);
+      console.log("Server Response:", data);
 
-    const token = data?.createUser?.token;
+      const token = data?.createUser?.token;
 
-    if (token) {
-      console.log("Account created successfully");
-      alert("Account created successfully!");
-      redirectToLogin();
-    } else {
-      console.error("Token not present in the server response");
-      alert("Failed to create account. Please try again.");
+      if (token) {
+        console.log("Account created successfully");
+        alert("Account created successfully!");
+        redirectToLogin();
+      } else {
+        alert("aaaaa");
+        console.error("Error:", error);
+        console.error("Token not present in the server response");
+        alert("Failed to create account. Please try again.");
+      }
+    } catch (error) {
+      alert("aaaaa2");
+      console.error("Error:", error);
+      console.error("Error:", error.message || "An error occurred");
     }
-  } catch (error) {
-    console.error("Error:", error.message || "An error occurred");
-  }
   };
 
   return (
@@ -93,3 +97,5 @@ export default function CreateAccount() {
     </div>
   );
 }
+
+export default CreateAccount;

@@ -8,22 +8,6 @@ const typeDefs = `
     password: String
   }
 
-  type Image {
-    filename: String!
-    path: String!
-  }
-  
-  input ImageInput {
-    file: Upload!
-  }
-  
-  extend type Post {
-    images: [Image]
-  }
-  
-  extend type Mutation {
-    createPostWithImage(postBody: String!, postTitle: String!, username: String!, images: [ImageInput]): Post
-  }
 
   type Comment {
     commentId: ID!
@@ -54,11 +38,11 @@ const typeDefs = `
     getAllPosts: [Post]
   }
 
-  scalar Upload
+
 
   type Mutation {
 
-    uploadFile(file: Upload!): String
+    
     
     login(email: String!, password: String!): Auth
     logout: Message

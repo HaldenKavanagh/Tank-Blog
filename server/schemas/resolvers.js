@@ -122,18 +122,7 @@ const resolvers = {
 
         const token = signToken(user);
 
-        const userWithFields = {
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          posts: user.posts,
-          following: user.following,
-        };
-
-        return {
-          token,
-          user: userWithFields,
-        };
+        return { token, user };
       } catch (error) {
         throw new Error(error.message);
       }
