@@ -1,3 +1,5 @@
+import "../styles/Profile.css";
+
 import React, { useState, useEffect } from "react";
 import AuthService from "../utils/auth";
 import { useQuery } from "@apollo/client";
@@ -17,8 +19,6 @@ export default function Profile() {
     }
   }, []);
 
-  
-
   if (loading) return <p>Loading...</p>;
   if (error) {
     console.error(error);
@@ -30,18 +30,22 @@ export default function Profile() {
 
   return (
     <div className="profilePage">
-      <h1>This Page is uder construction, sorry</h1>
       <h2>Welcome, {me.username}!</h2>
       <p>Email: {me.email}</p>
 
       <h3>Your Posts:</h3>
-      <ul>
+      <div className="cardContainer">
         {me.posts.map((post) => (
-          <li key={post._id}>
-            <strong>{post.postTitle}</strong>: {post.postBody}
-          </li>
+          <div className="profileCard" key={post._id}>
+            <div>
+              <p>post title: {post.postTitle}</p>{" "}
+            </div>
+            <div>
+              <p>post Body: {post.postBody}</p>{" "}
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

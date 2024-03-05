@@ -1,0 +1,27 @@
+.profilePage {
+  min-height: 80vh;
+  background-color: var(--darkest);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.profileCard {
+  border-radius: 12px;
+  background: var(--dark);
+  border: 3px solid var(--light);
+  padding: 38px;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20vw;
+}

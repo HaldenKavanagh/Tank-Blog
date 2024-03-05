@@ -85,6 +85,6 @@ postSchema.path("createdAt").get(function (value) {
   return value.toLocaleString();
 });
 
-const Post = model("post", postSchema);
+const Post = model("Post", postSchema);
 
 module.exports = Post;

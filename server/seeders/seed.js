@@ -6,12 +6,22 @@ const cleanDB = require("./cleanDB");
 
 db.once("open", async () => {
   try {
-    await cleanDB("Post", "posts");
+    await cleanDB("Post", "post");
     await cleanDB("User", "users");
 
     await User.create(userSeeds);
 
-    await Post.create(postSeeds);
+    for (let i = 0; i < postSeeds.length; i++) {
+      const { _id, username } = await Post.create(postSeeds[i]);
+      const user = await User.findOneAndUpdate(
+        { username: username },
+        {
+          $addToSet: {
+            posts: _id,
+          },
+        }
+      );
+    }
   } catch (err) {
     console.error(err);
     process.exit(1);

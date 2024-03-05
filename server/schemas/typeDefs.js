@@ -3,9 +3,9 @@ const typeDefs = `
     _id: ID
     username: String!
     email: String!
-    posts: [Post]!
     following: [User]!
     password: String
+    posts: [Post]!
   }
 
 

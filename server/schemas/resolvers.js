@@ -1,14 +1,12 @@
 const { signToken, AuthenticationError } = require("../utils/auth");
 const mongoose = require("mongoose");
-const { User, Post } = require("../models");
-const fs = require("fs");
-const path = require("path");
+const { Post, User } = require("../models");
 
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id });
+        return User.findOne({ _id: context.user._id }).populate("posts");
       }
       throw AuthenticationError;
     },
@@ -17,7 +15,14 @@ const resolvers = {
       return await User.findById(userId);
     },
     getAllUsers: async () => {
-      return await User.find();
+      try {
+        // Populate the 'posts' field for each user
+        const users = await User.find().populate("posts");
+        return users;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
     },
     getPost: async (_, { postId }) => {
       // Retrieve a post by ID
@@ -30,46 +35,6 @@ const resolvers = {
   },
 
   Mutation: {
-    // createPostWithImage: async (
-    //   _,
-    //   { postBody, postTitle, username, images }
-    // ) => {
-    //   // Create a new post
-    //   const newPost = new Post({
-    //     postBody,
-    //     postTitle,
-    //     username,
-    //     images: [], // Initialize images array
-    //   });
-
-    //   // Process the uploaded images
-    //   if (images && images.length > 0) {
-    //     images.forEach(async (imageInput) => {
-    //       const { createReadStream, filename } = await imageInput.file;
-    //       const stream = createReadStream();
-    //       const filePath = path.join(__dirname, `../uploads/${filename}`);
-
-    //       // Save the image file
-    //       await new Promise((resolve, reject) =>
-    //         stream
-    //           .pipe(fs.createWriteStream(filePath))
-    //           .on("finish", resolve)
-    //           .on("error", reject)
-    //       );
-
-    //       // Add the image path to the post
-    //       newPost.images.push({
-    //         filename,
-    //         path: filePath,
-    //       });
-    //     });
-    //   }
-
-    //   // Save the post to the database
-    //   await newPost.save();
-
-    //   return newPost;
-    // },
     login: async (parent, { email, password }) => {
       try {
         const user = await User.findOne({ email });
@@ -98,16 +63,34 @@ const resolvers = {
     },
     createPost: async (_, { postBody, postTitle, username }) => {
       // Create a new post
-      const newPost = new Post({
-        postBody,
-        postTitle,
-        username,
-      });
+      try {
+        // Create a new post
+        const newPost = new Post({
+          postBody,
+          postTitle,
+          username,
+        });
 
-      // Save the post to the database
-      await newPost.save();
+        // Save the post to the database
+        await newPost.save();
 
-      return newPost;
+        // Find the user who created the post
+        const user = await User.findOne({ username });
+
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        // Add the new post's _id to the user's posts array
+        user.posts.push(newPost._id);
+
+        // Save the updated user with the new post
+        await user.save();
+
+        return newPost;
+      } catch (error) {
+        throw new Error(error.message);
+      }
     },
     createUser: async (parent, { username, email, password }) => {
       try {
@@ -131,7 +114,7 @@ const resolvers = {
       // Delete a post by ID
       return await Post.findByIdAndDelete(postId);
     },
-    addComment: async (_, { postId, commentBody, username }) => {
+    addComment: async (_, { postId, commentBody, username }, context) => {
       // Add a comment to a post
       const post = await Post.findById(postId);
 
