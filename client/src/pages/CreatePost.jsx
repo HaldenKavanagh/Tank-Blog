@@ -1,3 +1,5 @@
+import "../styles/CreatePost.css";
+
 import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_POST } from "../utils/mutations";
@@ -45,13 +47,6 @@ export default function CreatePost() {
       redirectToFeed();
       console.log("Post created successfully");
       alert("Post created successfully!");
-      // if (post) {
-      //   console.log("Post created successfully");
-      //   alert("Post created successfully!");
-      //   redirectToFeed();
-      // } else {
-      //   alert("Failed to create post");
-      // }
     } catch (error) {
       console.error("Error:", error.message || "An error occurred");
     }
@@ -59,35 +54,28 @@ export default function CreatePost() {
 
   return (
     <div className="createPostPage">
-      <div className="createPost">
-        <form onSubmit={handleCreatePost}>
-          {/* <input
-            type="text"
-            placeholder="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          /> */}
+      <h1 className="contact-title">Create a Post</h1>
+      <div className="logInForm">
+        <label htmlFor="email">Title: </label>
+        <input
+          className="custom-input"
+          type="text"
+          placeholder="Title"
+          value={postTitle}
+          onChange={(e) => setPostTitle(e.target.value)}
+        />
+        <label htmlFor="email">Content: </label>
 
-          <input
-            type="text"
-            placeholder="Title"
-            value={postTitle}
-            onChange={(e) => setPostTitle(e.target.value)}
-          />
-
-          <input
-            type="text"
-            placeholder="Content"
-            value={postBody}
-            onChange={(e) => setPostBody(e.target.value)}
-          />
-
-          <button type="submit" disabled={loading}>
-            {loading ? "Creating Post..." : "Create Post"}
-          </button>
-        </form>
-
-        {error && <p>Error: {error.message}</p>}
+        <input
+          className="custom-input"
+          type="text"
+          placeholder="Content"
+          value={postBody}
+          onChange={(e) => setPostBody(e.target.value)}
+        />
+        <button className="button" onClick={handleCreatePost}>
+          Create Post
+        </button>
       </div>
     </div>
   );

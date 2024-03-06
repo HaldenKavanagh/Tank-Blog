@@ -44,9 +44,10 @@ export default function Feed() {
               {posts.map((post) => (
                 <div className="postCard" key={post._id}>
                   <p className="postTitle">{post.postTitle}</p>
-                  <p className="postUsername">Author: {post.username}</p>
                   <p className="postBody">{post.postBody}</p>
-                  <p className="postCreatedAt">{post.createdAt}</p>
+                  <p className="postCreatedAt">
+                    created by {post.username} at {post.createdAt}
+                  </p>
                 </div>
               ))}
             </>

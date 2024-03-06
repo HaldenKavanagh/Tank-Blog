@@ -47,7 +47,7 @@ function NavTabs() {
             : "nav-link"
         }
       >
-        <p>feed</p>
+        <p>Feed</p>
       </Link>
       <Link
         to="/create-post"
