@@ -1,0 +1,4 @@
+.viewPost {
+  background-color: var(--darkest);
+  min-height: 86vh;
+}

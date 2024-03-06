@@ -1,6 +1,6 @@
 import "../styles/Profile.css";
 import { FaPencil } from "react-icons/fa6";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaCommentAlt } from "react-icons/fa";
 import { useState, useEffect } from "react"; // Add useState here
 import AuthService from "../utils/auth";
 import { useQuery } from "@apollo/client";
@@ -77,11 +77,12 @@ export default function Profile() {
                     onClick={() => handleDeletePost(post._id)}
                     className="profileIcons"
                   />
+                  <FaCommentAlt className="profileIcons" />
                 </div>
               </p>
               <p className="postBody">{post.postBody}</p>
               <p className="postCreatedAt">
-                created by {post.username} at {post.createdAt}
+                created by {post.username} at {post.createdAt} <FaCommentAlt />
               </p>
             </div>
           ))}

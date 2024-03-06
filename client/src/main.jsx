@@ -8,6 +8,7 @@ import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import CreateAcc from "./pages/CreateAcc";
+import ViewPost from "./pages/ViewPost";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/create-acc",
         element: <CreateAcc />,
+      },
+      {
+        path: "/view-post/:postId",
+        element: <ViewPost />,
       },
     ],
   },

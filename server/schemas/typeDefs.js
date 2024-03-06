@@ -42,8 +42,6 @@ const typeDefs = `
 
   type Mutation {
 
-    
-    
     login(email: String!, password: String!): Auth
     logout: Message
 

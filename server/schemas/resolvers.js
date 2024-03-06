@@ -26,7 +26,7 @@ const resolvers = {
     },
     getPost: async (_, { postId }) => {
       // Retrieve a post by ID
-      return await Post.findById(postId);
+      return await Post.findById(postId).populate("comments");
     },
     getAllPosts: async () => {
       // Retrieve all posts

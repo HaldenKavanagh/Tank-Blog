@@ -20,7 +20,10 @@ export const QUERY_POST = gql`
     getPost(postId: $postId) {
       _id
       comments {
+        username
+        createdAt
         commentBody
+        commentId
       }
       createdAt
       postBody
@@ -82,18 +85,17 @@ export const GET_LOGGED_IN_USER = gql`
   }
 `;
 
-
-export const GET_USER_POSTS = gql`
-  query getUserPosts($userId: ID!) {
-    getUser(userId: $userId) {
-      _id
-      username
-      posts {
-        _id
-        postTitle
-        postBody
-        createdAt
-      }
-    }
-  }
-`;
+// export const GET_USER_POSTS = gql`
+//   query getUserPosts($userId: ID!) {
+//     getUser(userId: $userId) {
+//       _id
+//       username
+//       posts {
+//         _id
+//         postTitle
+//         postBody
+//         createdAt
+//       }
+//     }
+//   }
+// `;

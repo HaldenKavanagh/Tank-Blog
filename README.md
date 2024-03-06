@@ -1,8 +1,23 @@
-# React + Vite
+## TODO 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Create view single post page
+    -edit post if yours
+    -view comments
+    -if its your post, delete any comment
 
-Currently, two official plugins are available:
+On feed / profile page
+    view comments button
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+-edit post
+-delete post
+-add comment
+-delete your comments
+-delete any comment on your post
+
+back buttons
+
+delete comment if you posted it 
+
+Date formatter
