@@ -71,14 +71,14 @@ export default function Profile() {
       </div>
 
       <h3 className="postsTitle">Your Posts:</h3>
-      <div className="cardContainer">
-        {me.posts &&
-          me.posts.map((post) => (
+      {me.posts && me.posts.length > 0 ? (
+        <div className="cardContainer">
+          {me.posts.map((post) => (
             <div className="postCard" key={post._id}>
               <p className="postTitle">{post.postTitle}</p>
               <p className="postBody">{post.postBody}</p>
               <p className="postCreatedAt">
-                created by {post.username} at {post.createdAt}
+                Created by {me.username} at {post.createdAt}
               </p>
               <div>
                 <FaPencil className="profileIcons" />
@@ -93,7 +93,10 @@ export default function Profile() {
               </div>
             </div>
           ))}
-      </div>
+        </div>
+      ) : (
+        <p className="noPostsMessage">You have no posts yet.</p>
+      )}
     </div>
   );
 }
