@@ -5,7 +5,8 @@ import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_POST } from "../utils/queries";
 import { useMutation } from "@apollo/client";
-import { ADD_COMMENT } from "../utils/mutations";
+import { ADD_COMMENT, DELETE_COMMENT } from "../utils/mutations";
+import { FaTrash } from "react-icons/fa";
 
 import AuthService from "../utils/auth";
 
@@ -16,17 +17,17 @@ export default function ViewPost() {
 
   const { postId } = useParams();
   const [commentBody, setCommentBody] = useState("");
+  const [authUsername, setAuthUsername] = useState("");
 
   const { loading, data, error } = useQuery(QUERY_POST, {
     variables: { postId },
   });
 
   useEffect(() => {
-    // Check if the user is logged in when the component mounts
     if (AuthService.loggedIn()) {
-      const username = AuthService.getUser().data?.username; // Add the ? to handle potential null or undefined
+      const username = AuthService.getUser().data?.username;
       if (username) {
-        console.log(username);
+        setAuthUsername(username);
       } else {
         redirectToLogin();
         alert("Login or create an account to interact with posts");
@@ -62,6 +63,23 @@ export default function ViewPost() {
       setCommentBody("");
     } catch (error) {
       console.error("Error adding comment:", error.message);
+    }
+  };
+
+  const [deleteComment] = useMutation(DELETE_COMMENT);
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await deleteComment({
+        variables: {
+          postId,
+          commentId,
+        },
+      });
+
+      window.location.reload();
+    } catch (error) {
+      console.error("Error deleting comment:", error.message);
     }
   };
 
@@ -103,6 +121,12 @@ export default function ViewPost() {
               <div className="comment" key={comment.commentId}>
                 <p className="commentAuthor">{comment.username}:</p>
                 <p className="commentBody">{comment.commentBody}</p>
+                {authUsername === comment.username && (
+                  <FaTrash
+                    className="profileIcons"
+                    onClick={() => handleDeleteComment(comment.commentId)}
+                  />
+                )}
               </div>
             ))
           ) : (

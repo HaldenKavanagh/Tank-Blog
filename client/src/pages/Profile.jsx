@@ -1,7 +1,7 @@
 import "../styles/Profile.css";
 import { FaPencil } from "react-icons/fa6";
 import { FaTrash, FaCommentAlt } from "react-icons/fa";
-import { useState, useEffect } from "react"; // Add useState here
+import { useState, useEffect } from "react"; 
 import AuthService from "../utils/auth";
 import { useQuery } from "@apollo/client";
 import { GET_LOGGED_IN_USER } from "../utils/queries";
