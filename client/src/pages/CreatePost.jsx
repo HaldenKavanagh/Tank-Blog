@@ -29,9 +29,9 @@ export default function CreatePost() {
   console.log(username);
   const [createPost, { loading, error }] = useMutation(CREATE_POST);
 
-  const redirectToFeed = () => {
+  const redirectToProfile = () => {
     // Consider using React Router for navigation
-    window.location.href = "/feed";
+    window.location.href = "/profile";
   };
 
   const handleCreatePost = async (e) => {
@@ -44,7 +44,7 @@ export default function CreatePost() {
       });
 
       const post = data?.createPost?.post;
-      redirectToFeed();
+      redirectToProfile();
       console.log("Post created successfully");
       alert("Post created successfully!");
     } catch (error) {

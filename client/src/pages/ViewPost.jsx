@@ -18,6 +18,7 @@ export default function ViewPost() {
   const { postId } = useParams();
   const [commentBody, setCommentBody] = useState("");
   const [authUsername, setAuthUsername] = useState("");
+  const [isPostCreator, setIsPostCreator] = useState(false);
 
   const { loading, data, error } = useQuery(QUERY_POST, {
     variables: { postId },
@@ -28,6 +29,8 @@ export default function ViewPost() {
       const username = AuthService.getUser().data?.username;
       if (username) {
         setAuthUsername(username);
+
+        setIsPostCreator(username === data?.getPost?.username);
       } else {
         redirectToLogin();
         alert("Login or create an account to interact with posts");
@@ -36,10 +39,9 @@ export default function ViewPost() {
       redirectToLogin();
       alert("Login or create an account to interact with posts");
     }
-  }, []);
+  }, [data?.getPost, isPostCreator]);
 
   const post = data?.getPost;
-  console.log(post);
 
   const [addComment] = useMutation(ADD_COMMENT);
 
@@ -68,21 +70,30 @@ export default function ViewPost() {
 
   const [deleteComment] = useMutation(DELETE_COMMENT);
 
-  const handleDeleteComment = async (commentId) => {
+  const handleDeleteComment = async (commentId, commentUsername) => {
     try {
-      await deleteComment({
-        variables: {
-          postId,
-          commentId,
-        },
-      });
+      // Check if the logged-in user is the creator of the post
+      const isPostCreator = authUsername === post.username;
 
-      window.location.reload();
+      // Check if the logged-in user is the creator of the comment
+      const isCommentCreator = authUsername === commentUsername;
+
+      if (isPostCreator || isCommentCreator) {
+        await deleteComment({
+          variables: {
+            postId,
+            commentId,
+          },
+        });
+
+        window.location.reload();
+      } else {
+        alert("You do not have permission to delete this comment.");
+      }
     } catch (error) {
       console.error("Error deleting comment:", error.message);
     }
   };
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -91,6 +102,7 @@ export default function ViewPost() {
     console.error(error);
     return <div>Error loading post</div>;
   }
+
   return (
     <div className="viewPost">
       <div className="postContainer">
@@ -121,10 +133,12 @@ export default function ViewPost() {
               <div className="comment" key={comment.commentId}>
                 <p className="commentAuthor">{comment.username}:</p>
                 <p className="commentBody">{comment.commentBody}</p>
-                {authUsername === comment.username && (
+                {(isPostCreator || authUsername === comment.username) && (
                   <FaTrash
                     className="profileIcons"
-                    onClick={() => handleDeleteComment(comment.commentId)}
+                    onClick={() =>
+                      handleDeleteComment(comment.commentId, comment.username)
+                    }
                   />
                 )}
               </div>

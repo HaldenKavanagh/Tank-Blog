@@ -2,12 +2,8 @@
 
 -edit post
 
--add comment
--delete your comments
--delete any comment on your post
+-back buttons
 
-back buttons
+-REMOVE ALL ALERTS
 
-delete comment if you posted it 
-
-Date formatter
+-Date formatter

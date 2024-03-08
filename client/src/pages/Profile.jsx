@@ -1,7 +1,7 @@
 import "../styles/Profile.css";
 import { FaPencil } from "react-icons/fa6";
 import { FaTrash, FaCommentAlt } from "react-icons/fa";
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 import AuthService from "../utils/auth";
 import { useQuery } from "@apollo/client";
 import { GET_LOGGED_IN_USER } from "../utils/queries";
@@ -11,6 +11,10 @@ import { DELETE_POST } from "../utils/mutations";
 export default function Profile() {
   const redirectToLogin = () => {
     window.location.href = "/login";
+  };
+
+  const handleViewPost = (postId) => {
+    window.location.href = `/view-post/${postId}`;
   };
 
   const { loading, error, data } = useQuery(GET_LOGGED_IN_USER);
@@ -61,29 +65,32 @@ export default function Profile() {
 
   return (
     <div className="profilePage">
-      <h2>Welcome, {me.username}!</h2>
-      <p>Email: {me.email}</p>
+      <div className="accInfo">
+        <h2>Welcome, {me.username}!</h2>
+        <p>Email: {me.email}</p>
+      </div>
 
-      <h3>Your Posts:</h3>
+      <h3 className="postsTitle">Your Posts:</h3>
       <div className="cardContainer">
         {me.posts &&
           me.posts.map((post) => (
             <div className="postCard" key={post._id}>
-              <p className="postTitle">
-                {post.postTitle}
-                <div>
-                  <FaPencil className="profileIcons" />
-                  <FaTrash
-                    onClick={() => handleDeletePost(post._id)}
-                    className="profileIcons"
-                  />
-                  <FaCommentAlt className="profileIcons" />
-                </div>
-              </p>
+              <p className="postTitle">{post.postTitle}</p>
               <p className="postBody">{post.postBody}</p>
               <p className="postCreatedAt">
-                created by {post.username} at {post.createdAt} <FaCommentAlt />
+                created by {post.username} at {post.createdAt}
               </p>
+              <div>
+                <FaPencil className="profileIcons" />
+                <FaTrash
+                  onClick={() => handleDeletePost(post._id)}
+                  className="profileIcons"
+                />
+                <FaCommentAlt
+                  className="profileIcons"
+                  onClick={() => handleViewPost(post._id)}
+                />
+              </div>
             </div>
           ))}
       </div>
