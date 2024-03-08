@@ -1,12 +1,55 @@
 .viewPost {
   background-color: var(--darkest);
   min-height: 86vh;
+  padding: 20px;
+  color: var(--light);
 }
 
 .postContainer {
-  border: 2px solid rgb(18, 20, 18);
+  border: 2px solid var(--lightest);
   border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.postInfo {
+  color: var(--medium)
+}
+
+.commentContainer {
+  background: var(--dark);
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.comment {
+  border-radius: 15px;
+  background: var(--darkest);
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.commentAuthor {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.addCommentContainer {
   display: flex;
-  flex-direction: column;
-  align-items: center
+  align-items: center; 
+}
+
+
+
+.commentButton {
+  background-color: var(--lightest);
+  color: var(--light);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--dark);
 }

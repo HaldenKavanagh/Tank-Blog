@@ -7,10 +7,3 @@
   height: 7vh;
 }
 
-.custom-input {
-  background-color: var(--light);
-  margin-bottom: 10px;
-  width: 30vw;
-  height: 5vh;
-  border-radius: 10px;
-}

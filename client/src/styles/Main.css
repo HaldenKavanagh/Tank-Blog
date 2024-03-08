@@ -1,13 +1,13 @@
 :root {
-  --lightest: #cad2c5;
-  --light: #84a98c;
-  --medium: #52796f;
-  --dark: #354f52;
-  --darkest: #2f3e46;
+  --lightest: #bfcc94;
+  --light: #f0f4ef;
+  --medium: #b4cded;
+  --dark: #344966;
+  --darkest: #0d1821;
 }
 
 * {
-    font-family: "Rajdhani", sans-serif;
-    margin: 0;
-    padding: 0;
-  }
+  font-family: "Rajdhani", sans-serif;
+  margin: 0;
+  padding: 0;
+}

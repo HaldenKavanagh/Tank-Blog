@@ -11,9 +11,15 @@ import AuthService from "../utils/auth";
 
 export default function ViewPost() {
   const redirectToLogin = () => {
-    // Redirect to the login page
     window.location.href = "/login";
   };
+
+  const { postId } = useParams();
+  const [commentBody, setCommentBody] = useState("");
+
+  const { loading, data, error } = useQuery(QUERY_POST, {
+    variables: { postId },
+  });
 
   useEffect(() => {
     // Check if the user is logged in when the component mounts
@@ -31,25 +37,6 @@ export default function ViewPost() {
     }
   }, []);
 
-  // Get the postId from the URL using useParams
-  const { postId } = useParams();
-  const [commentBody, setCommentBody] = useState("");
-
-  console.log(postId);
-
-  const { loading, data, error } = useQuery(QUERY_POST, {
-    variables: { postId },
-  });
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    console.error(error);
-    return <div>Error loading post</div>;
-  }
-
   const post = data?.getPost;
   console.log(post);
 
@@ -58,16 +45,11 @@ export default function ViewPost() {
   const handleAddComment = async (e) => {
     e.preventDefault();
 
-    if (!AuthService.loggedIn()) {
-      redirectToLogin();
-      return;
-    }
     const username = AuthService.getUser().data?.username;
     if (!commentBody.trim()) {
       alert("Please enter a comment before submitting.");
       return;
     }
-
     try {
       const { data } = await addComment({
         variables: {
@@ -77,44 +59,57 @@ export default function ViewPost() {
         },
       });
 
-      
-      const newComment = data.addComment.comments[data.addComment.comments.length - 1];
-
       setCommentBody("");
     } catch (error) {
       console.error("Error adding comment:", error.message);
     }
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    console.error(error);
+    return <div>Error loading post</div>;
+  }
   return (
     <div className="viewPost">
       <div className="postContainer">
-        <p>
+        <p className="postInfo">
           Created by {post.username} on {post.createdAt}
         </p>
         <h2>{post.postTitle}</h2>
         <p>{post.postBody}</p>
 
         <h3>Comments</h3>
-        {post.comments.map((comment) => (
-          <div key={comment.commentId}>
-            <p>{comment.commentBody}</p>
-            <p>
-              Comment by {comment.username} on {comment.createdAt}
-            </p>
-          </div>
-        ))}
+
+        <div className="addCommentContainer">
+          <input
+            className="custom-input"
+            type="text"
+            placeholder="Add a comment here"
+            value={commentBody}
+            onChange={(e) => setCommentBody(e.target.value)}
+          />
+          <button className="commentButton" onClick={handleAddComment}>
+            Add comment
+          </button>
+        </div>
+
+        <div className="commentContainer">
+          {post.comments.length > 0 ? (
+            post.comments.map((comment) => (
+              <div className="comment" key={comment.commentId}>
+                <p className="commentAuthor">{comment.username}:</p>
+                <p className="commentBody">{comment.commentBody}</p>
+              </div>
+            ))
+          ) : (
+            <p>No comments yet.</p>
+          )}
+        </div>
       </div>
-      <input
-        className="custom-input"
-        type="text"
-        placeholder="Add a comment here"
-        value={commentBody}
-        onChange={(e) => setCommentBody(e.target.value)}
-      />
-      <button className="button" onClick={handleAddComment}>
-        add comment
-      </button>
     </div>
   );
 }

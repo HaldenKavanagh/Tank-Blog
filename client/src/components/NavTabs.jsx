@@ -7,8 +7,8 @@ function NavTabs() {
   const location = useLocation();
 
   const getPageName = (pathname) => {
-    // Extract the last part of the pathname as the page name
     const pageName = pathname.substring(1);
+    
     return pageName === "" ? "Home" : pageName;
   };
 
@@ -38,11 +38,10 @@ function NavTabs() {
 
   return (
     <div className="navbar">
-      
       <Link
         to="/feed"
         className={
-          getPageName(location.pathname) === "Feed"
+          getPageName(location.pathname) === "feed"
             ? "nav-link active"
             : "nav-link"
         }
@@ -52,7 +51,7 @@ function NavTabs() {
       <Link
         to="/create-post"
         className={
-          getPageName(location.pathname) === "CreatePost"
+          getPageName(location.pathname) === "create-post"
             ? "nav-link active"
             : "nav-link"
         }
@@ -62,7 +61,7 @@ function NavTabs() {
       <Link
         to="/profile"
         className={
-          getPageName(location.pathname) === "Profile"
+          getPageName(location.pathname) === "profile"
             ? "nav-link active"
             : "nav-link"
         }
