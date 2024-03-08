@@ -2,3 +2,11 @@
   background-color: var(--darkest);
   min-height: 86vh;
 }
+
+.postContainer {
+  border: 2px solid rgb(18, 20, 18);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}

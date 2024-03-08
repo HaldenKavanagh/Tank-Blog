@@ -30,7 +30,7 @@ export default function Feed() {
                   className="button"
                   onClick={() => handleViewPost(post._id)}
                 >
-                  View Comments
+                  View Full Post
                 </button>
               </div>
             ))}

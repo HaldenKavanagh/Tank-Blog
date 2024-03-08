@@ -61,3 +61,22 @@ export const DELETE_POST = gql`
     }
   }
 `;
+
+export const ADD_COMMENT = gql`
+  mutation addComment($postId: ID!, $commentBody: String!, $username: String!) {
+    addComment(
+      postId: $postId
+      commentBody: $commentBody
+      username: $username
+    ) {
+      _id
+      username
+      comments {
+        commentBody
+        commentId
+        createdAt
+        username
+      }
+    }
+  }
+`;

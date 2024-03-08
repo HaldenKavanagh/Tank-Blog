@@ -16,7 +16,7 @@ export const QUERY_POSTS = gql`
 `;
 
 export const QUERY_POST = gql`
-  query getPost {
+  query getPost($postId: ID!) {
     getPost(postId: $postId) {
       _id
       comments {
