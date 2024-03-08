@@ -51,6 +51,7 @@ const typeDefs = `
 
     addComment(postId: ID!, commentBody: String!, username: String!): Post
     updateComment(postId: ID!, commentId: ID!, commentBody: String!): Post
+    deleteComment(postId: ID!, commentId: ID!): Post
 
     deleteUser(userId: ID!): User
     createUser(username: String!, email: String!, password: String!): Auth

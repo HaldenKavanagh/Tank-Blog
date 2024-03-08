@@ -62,16 +62,13 @@ const resolvers = {
       }
     },
     createPost: async (_, { postBody, postTitle, username }) => {
-      // Create a new post
       try {
-        // Create a new post
         const newPost = new Post({
           postBody,
           postTitle,
           username,
         });
 
-        // Save the post to the database
         await newPost.save();
 
         // Find the user who created the post
@@ -114,6 +111,31 @@ const resolvers = {
       // Delete a post by ID
       return await Post.findByIdAndDelete(postId);
     },
+
+    deleteComment: async (_, { postId, commentId }) => {
+      try {
+        const post = await Post.findByIdAndUpdate(
+          postId,
+          {
+            $pull: {
+              comments: {
+                commentId: commentId,
+              },
+            },
+          },
+          { new: true }
+        );
+
+        if (!post) {
+          throw new Error("Post not found");
+        }
+
+        return post;
+      } catch (error) {
+        throw new Error(error.message);
+      }
+    },
+
     addComment: async (_, { postId, commentBody, username }, context) => {
       // Add a comment to a post
       const post = await Post.findById(postId);
