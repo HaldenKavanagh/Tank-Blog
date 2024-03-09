@@ -15,6 +15,14 @@ export default function ViewPost() {
     window.location.href = "/login";
   };
 
+  const handleViewUser = (username) => {
+    window.location.href = `/user/${username}`;
+  };
+
+  const handleViewCommentAuthor = (username) => {
+    window.location.href = `/user/${username}`;
+  };
+
   const { postId } = useParams();
   const [commentBody, setCommentBody] = useState("");
   const [authUsername, setAuthUsername] = useState("");
@@ -107,7 +115,14 @@ export default function ViewPost() {
     <div className="viewPost">
       <div className="postContainer">
         <p className="postInfo">
-          Created by {post.username} on {post.createdAt}
+          Created by{" "}
+          <a
+            className="usernameAnchor"
+            onClick={() => handleViewUser(post.username)}
+          >
+            {post.username}
+          </a>{" "}
+          on {post.createdAt}
         </p>
         <h2>{post.postTitle}</h2>
         <p>{post.postBody}</p>
@@ -131,8 +146,16 @@ export default function ViewPost() {
           {post.comments.length > 0 ? (
             post.comments.map((comment) => (
               <div className="comment" key={comment.commentId}>
-                <p className="commentAuthor">{comment.username}:</p>
-                <p className="commentBody">{comment.commentBody}</p>
+                <div className="commentData">
+                  <a
+                    className="commentAuthor"
+                    onClick={() => handleViewCommentAuthor(comment.username)}
+                  >
+                    {comment.username}:
+                  </a>
+
+                  <p className="commentBody">{comment.commentBody}</p>
+                </div>
                 {(isPostCreator || authUsername === comment.username) && (
                   <FaTrash
                     className="profileIcons"

@@ -2,3 +2,10 @@
   background: var(--darkest);
   min-height: 86vh;
 }
+
+.userTitle {
+  color: var(--lightest);
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}

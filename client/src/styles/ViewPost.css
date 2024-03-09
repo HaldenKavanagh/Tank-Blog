@@ -13,7 +13,7 @@
 }
 
 .postInfo {
-  color: var(--medium)
+  color: var(--medium);
 }
 
 .commentContainer {
@@ -27,19 +27,23 @@
   background: var(--darkest);
   padding: 10px;
   margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.commentData {
+  display: flex;
 }
 
 .commentAuthor {
   font-weight: bold;
   margin-right: 5px;
+  text-decoration: underline;
 }
 
 .addCommentContainer {
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
-
-
 
 .commentButton {
   background-color: var(--lightest);

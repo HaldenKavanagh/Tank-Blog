@@ -12,6 +12,10 @@ export default function User() {
     window.location.href = "/profile";
   };
 
+  const handleViewPost = (postId) => {
+    window.location.href = `/view-post/${postId}`;
+  };
+
   const { username } = useParams();
   console.log(username);
 
@@ -49,7 +53,7 @@ export default function User() {
 
       {user && (
         <>
-          <h2>{user.username}'s Posts</h2>
+          <h2 className="userTitle">{user.username}'s Posts</h2>
 
           {user.posts && user.posts.length > 0 ? (
             <div className="cardContainer">
@@ -60,6 +64,12 @@ export default function User() {
                   <p className="postCreatedAt">
                     Created by {user.username} at {post.createdAt}
                   </p>
+                  <button
+                    className="button"
+                    onClick={() => handleViewPost(post._id)}
+                  >
+                    View Full Post
+                  </button>
                 </div>
               ))}
             </div>
