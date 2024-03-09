@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import CreateAcc from "./pages/CreateAcc";
 import ViewPost from "./pages/ViewPost";
 import User from "./pages/User";
+import EditPost from "./pages/EditPost";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/user/:username",
         element: <User />,
+      },
+      {
+        path: "/edit-post/:postId",
+        element: <EditPost />,
       },
     ],
   },
