@@ -32,7 +32,7 @@ const typeDefs = `
 
   type Query {
     me: User
-    getUser(userId: ID!): User
+    getUser(username: String!): User
     getAllUsers: [User]
     getPost(postId: ID!): Post
     getAllPosts: [Post]

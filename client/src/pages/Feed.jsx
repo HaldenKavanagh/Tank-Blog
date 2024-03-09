@@ -12,6 +12,10 @@ export default function Feed() {
     window.location.href = `/view-post/${postId}`;
   };
 
+  const handleViewUser = (username) => {
+    window.location.href = `/user/${username}`;
+  };
+
   return (
     <div className="feedPage">
       <div className="container">
@@ -24,7 +28,11 @@ export default function Feed() {
                 <p className="postTitle">{post.postTitle}</p>
                 <p className="postBody">{post.postBody}</p>
                 <p className="postCreatedAt">
-                  created by {post.username} at {post.createdAt}
+                  created by{" "}
+                  <a className="usernameAnchor" onClick={() => handleViewUser(post.username)}>
+                    {post.username}
+                  </a>{" "}
+                  at {post.createdAt}
                 </p>
                 <button
                   className="button"

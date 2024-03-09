@@ -10,9 +10,14 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    getUser: async (_, { userId }) => {
-      // Retrieve a user by ID
-      return await User.findById(userId);
+    getUser: async (_, { username }) => {
+      try {
+        const user = await User.findOne({ username }).populate("posts");
+        return user;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
     },
     getAllUsers: async () => {
       try {

@@ -50,16 +50,16 @@ export const QUERY_USERS = gql`
 `;
 
 export const QUERY_USER = gql`
-  query getUser {
-    getUser(userId: $userId) {
+  query getUser($username: String!) {
+    getUser(username: $username) {
       _id
       email
       username
-      following {
-        _id
-      }
       posts {
         _id
+        postBody
+        postTitle
+        createdAt
       }
     }
   }
