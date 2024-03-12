@@ -1,0 +1,55 @@
+/* Custom modal styles */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: var(--medium);
+  border: 5px solid var(--darkest);
+  border-radius: 10px;
+}
+
+.modal-header {
+  background-color: var(--dark);
+  color: #fff;
+  border-bottom: none;
+  padding: 20px;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+/* Close button style */
+.close {
+  color: #fff;
+  font-size: 1.5rem;
+  opacity: 1;
+}
+
+.close:hover {
+  color: #ccc;
+  opacity: 1;
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999; /* Ensure the modal container is above other elements */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

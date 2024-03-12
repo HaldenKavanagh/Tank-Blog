@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_USER, LOGIN_USER } from "../utils/mutations";
-import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
 import "../styles/CreateAcc.css";
+import "../styles/Modal.css";
 
 function CreateAccount() {
   const [username, setUsername] = useState("");
@@ -10,6 +13,9 @@ function CreateAccount() {
   const [password, setPassword] = useState("");
 
   const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const [createUser, { loading, error }] = useMutation(CREATE_USER);
   const [loginUser] = useMutation(LOGIN_USER);
@@ -21,14 +27,25 @@ function CreateAccount() {
   };
 
   const redirectToProfile = () => {
-    // Consider using React Router for navigation
-    setTimeout(() => {
-      window.location.href = "/profile";
-    }, 2000);
+    handleClose();
+
+    window.location.href = "/profile";
+  };
+
+  const redirectToFeed = () => {
+    handleClose();
+
+    window.location.href = "/feed";
+  };
+
+  const redirectToCreatePost = () => {
+    handleClose();
+
+    window.location.href = "/create-post";
   };
 
   const handleCreateUser = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
 
     try {
       console.log("Creating user with:", username, email, password);
@@ -41,7 +58,7 @@ function CreateAccount() {
       const token = data?.createUser?.token;
 
       if (token) {
-        setShow(true);
+        handleShow;
         handleLogin();
       } else {
         console.log("error");
@@ -70,7 +87,7 @@ function CreateAccount() {
         // Store the token in local storage
         localStorage.setItem("id_token", token);
         console.log("Login successful");
-        redirectToProfile();
+        handleShow();
       } else {
         alert("Failed to login");
       }
@@ -80,7 +97,7 @@ function CreateAccount() {
   };
 
   return (
-    <div className="createAccountPage">
+    <div className="createAccountPage ">
       <h1 className="contact-title">Create an account</h1>
       <div className="createAccount">
         <form onSubmit={handleCreateUser}>
@@ -123,16 +140,32 @@ function CreateAccount() {
             Back to login
           </button>
         </form>
-        {show && (
-          <Alert
-            className="my-custom-alert"
-            variant="success"
-            onClose={() => setShow(false)}
-            dismissible
-          >
-            Welcome!
-          </Alert>
-        )}
+        <Button variant="primary" onClick={handleShow}>
+          Launch demo modal
+        </Button>
+
+        <Modal
+          className="modal-container"
+          show={show}
+          onHide={handleClose}
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Thanks for Joining!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body></Modal.Body>
+          <Modal.Footer>
+            <Button className="createButton" onClick={redirectToProfile}>
+              View Profile
+            </Button>
+            <Button className="createButton" onClick={redirectToFeed}>
+              View Feed
+            </Button>
+            <Button className="createButton" onClick={redirectToCreatePost}>
+              Create a Post
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     </div>
   );

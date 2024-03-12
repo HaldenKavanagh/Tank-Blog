@@ -20,7 +20,7 @@ Once the repo is cloned to your local device, run "npm i && npm run seed && npm 
 
 ## Usage Information
 
-Once in the site, create an account or login. Once logged in, you can navigate the site through the navigation bar at the top. create a post on the create a post page. From the feed, click on a user name to viwe their psofile page, if you click the button to see the full post, you will be taken to the post page. Add and delete comments here. click on a comment author to view their profile page. from your profile page you can delete a post.
+Once in the site, create an account or login. Once logged in, you can navigate the site through the navigation bar at the top. create a post on the create a post page. From the feed, click on a user name to viwe their psofile page, if you click the button to see the full post, you will be taken to the post pagescd. Add and delete comments here. click on a comment author to view their profile page. from your profile page you can delete a post.
 
 ## Licence
 
