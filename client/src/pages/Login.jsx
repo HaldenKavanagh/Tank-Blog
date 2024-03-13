@@ -90,7 +90,7 @@ function Login() {
           centered
         >
           <Modal.Header closeButton>
-            <Modal.Title>Thanks for Joining ... where to now?</Modal.Title>
+            <Modal.Title>Error logging in, make sure to check all fields</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Button className="createButton" onClick={handleCreateAcc}>
