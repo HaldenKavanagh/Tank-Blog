@@ -24,7 +24,6 @@ export default function Profile() {
   useEffect(() => {
     if (!AuthService.loggedIn()) {
       redirectToLogin();
-      alert("Create an account or Login to view this page");
     }
   }, []);
 

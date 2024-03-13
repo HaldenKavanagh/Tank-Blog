@@ -4,9 +4,17 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
 function Login() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleCreateAcc = () => {
     window.location.href = "/create-acc";
@@ -38,10 +46,10 @@ function Login() {
         console.log("Login successful");
         redirectToProfile();
       } else {
-        alert("Failed to login");
+        handleShow();
       }
     } catch (error) {
-      console.error("Error:", error);
+      handleShow();
     }
   };
 
@@ -49,7 +57,7 @@ function Login() {
     <div className="logIn">
       <h1 className="contact-title">Login</h1>
       <div className="logInForm">
-      <label htmlFor="email">Email:</label>
+        <label htmlFor="email">Email:</label>
         <input
           className="custom-input"
           type="text"
@@ -74,6 +82,25 @@ function Login() {
         <button className="createButton" onClick={handleCreateAcc}>
           Create An Account
         </button>
+
+        <Modal
+          className="modal-container"
+          show={show}
+          onHide={handleClose}
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Thanks for Joining ... where to now?</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Button className="createButton" onClick={handleCreateAcc}>
+              Create an Account
+            </Button>
+            <Button className="createButton" onClick={handleClose}>
+              close
+            </Button>
+          </Modal.Body>
+        </Modal>
       </div>
     </div>
   );
