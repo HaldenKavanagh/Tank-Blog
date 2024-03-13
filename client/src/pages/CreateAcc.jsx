@@ -151,11 +151,9 @@ function CreateAccount() {
           centered
         >
           <Modal.Header closeButton>
-            <Modal.Title>Thanks for Joining!</Modal.Title>
+            <Modal.Title>Thanks for Joining ... where to now?</Modal.Title>
           </Modal.Header>
-          <Modal.Body></Modal.Body>
-          <Modal.Footer>
-            <Button className="createButton" onClick={redirectToProfile}>
+          <Modal.Body><Button className="createButton" onClick={redirectToProfile}>
               View Profile
             </Button>
             <Button className="createButton" onClick={redirectToFeed}>
@@ -163,8 +161,8 @@ function CreateAccount() {
             </Button>
             <Button className="createButton" onClick={redirectToCreatePost}>
               Create a Post
-            </Button>
-          </Modal.Footer>
+            </Button></Modal.Body>
+          
         </Modal>
       </div>
     </div>

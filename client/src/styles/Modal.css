@@ -3,43 +3,34 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 50vw;
+  margin: auto;
+  padding-top: 20px;
 }
 
 .modal-content {
   background-color: var(--medium);
-  border: 5px solid var(--darkest);
+  border: 5px solid var(--lightest);
   border-radius: 10px;
 }
 
 .modal-header {
   background-color: var(--dark);
-  color: #fff;
+  color: var(--light);
   border-bottom: none;
   padding: 20px;
+  border-bottom: 3px solid var(--darkest);
 }
 
 .modal-title {
   font-weight: bold;
+  text-align: center;
 }
 
 .modal-body {
   padding: 20px;
-}
-
-.modal-footer {
-  border-top: none;
-}
-
-/* Close button style */
-.close {
-  color: #fff;
-  font-size: 1.5rem;
-  opacity: 1;
-}
-
-.close:hover {
-  color: #ccc;
-  opacity: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .modal-container {
@@ -48,7 +39,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 9999; /* Ensure the modal container is above other elements */
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;

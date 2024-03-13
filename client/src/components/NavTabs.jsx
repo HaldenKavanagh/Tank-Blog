@@ -8,7 +8,7 @@ function NavTabs() {
 
   const getPageName = (pathname) => {
     const pageName = pathname.substring(1);
-    
+
     return pageName === "" ? "Home" : pageName;
   };
 
@@ -36,6 +36,16 @@ function NavTabs() {
     }
   };
 
+  const redirectToLogin = () => {
+    window.location.href = "/login";
+    alert("Login or create an account to access this page");
+  };
+
+  const checkLoggedIn = () => {
+    if (!AuthService.loggedIn()) {
+      redirectToLogin();
+    }
+  };
   return (
     <div className="navbar">
       <Link
@@ -50,6 +60,7 @@ function NavTabs() {
       </Link>
       <Link
         to="/create-post"
+        onClick={checkLoggedIn}
         className={
           getPageName(location.pathname) === "create-post"
             ? "nav-link active"
@@ -60,6 +71,7 @@ function NavTabs() {
       </Link>
       <Link
         to="/profile"
+        onClick={checkLoggedIn}
         className={
           getPageName(location.pathname) === "profile"
             ? "nav-link active"
@@ -68,16 +80,6 @@ function NavTabs() {
       >
         <p>Profile</p>
       </Link>
-      {/* <Link
-        to="/Login"
-        className={
-          getPageName(location.pathname) === "Login"
-            ? "nav-link active"
-            : "nav-link"
-        }
-      >
-        <p>Login</p>
-      </Link> */}
       {renderAuthButton()}
     </div>
   );

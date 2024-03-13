@@ -4,21 +4,25 @@ import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_POST } from "../utils/mutations";
 
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
 import AuthService from "../utils/auth";
 
 export default function CreatePost() {
-  const redirectToLogin = () => {
+  const redirectToFeed = () => {
     // Redirect to the login page
-    window.location.href = "/login";
+    window.location.href = "/feed";
+  };
+
+  const redirectToProfile = () => {
+    // Redirect to the login page
+    window.location.href = "/profile";
   };
 
   useEffect(() => {
-    // Check if the user is logged in when the component mounts
     if (AuthService.loggedIn()) {
       setUsername(AuthService.getUser().data.username);
-    } else {
-      redirectToLogin();
-      alert("Login or create an account to post");
     }
   }, []);
 
@@ -26,13 +30,13 @@ export default function CreatePost() {
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   console.log(username);
   const [createPost, { loading, error }] = useMutation(CREATE_POST);
-
-  const redirectToProfile = () => {
-    // Consider using React Router for navigation
-    window.location.href = "/profile";
-  };
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
@@ -44,9 +48,9 @@ export default function CreatePost() {
       });
 
       const post = data?.createPost?.post;
-      redirectToProfile();
+
       console.log("Post created successfully");
-      alert("Post created successfully!");
+      handleShow();
     } catch (error) {
       console.error("Error:", error.message || "An error occurred");
     }
@@ -77,6 +81,24 @@ export default function CreatePost() {
           Create Post
         </button>
       </div>
+      <Modal
+        className="modal-container"
+        show={show}
+        onHide={handleClose}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Post created Successfully!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Button className="createButton" onClick={redirectToFeed}>
+            View Feed
+          </Button>
+          <Button className="createButton" onClick={redirectToProfile}>
+            View Profile
+          </Button>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
