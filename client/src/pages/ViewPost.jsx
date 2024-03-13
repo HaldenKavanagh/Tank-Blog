@@ -7,12 +7,17 @@ import { QUERY_POST } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import { ADD_COMMENT, DELETE_COMMENT } from "../utils/mutations";
 import { FaTrash } from "react-icons/fa";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 import AuthService from "../utils/auth";
 
 export default function ViewPost() {
-  const redirectToLogin = () => {
-    window.location.href = "/login";
+  const [show, setShow] = useState(false);
+
+  const handleShow = () => {
+    setShow(true);
+    setTimeout(() => setShow(false), 1500); // Hide after 3 seconds
   };
 
   const handleViewUser = (username) => {
@@ -41,11 +46,9 @@ export default function ViewPost() {
         setIsPostCreator(username === data?.getPost?.username);
       } else {
         redirectToLogin();
-        alert("Login or create an account to interact with posts");
       }
     } else {
       redirectToLogin();
-      alert("Login or create an account to interact with posts");
     }
   }, [data?.getPost, isPostCreator]);
 
@@ -58,7 +61,7 @@ export default function ViewPost() {
 
     const username = AuthService.getUser().data?.username;
     if (!commentBody.trim()) {
-      alert("Please enter a comment before submitting.");
+      handleShow();
       return;
     }
     try {
@@ -95,8 +98,6 @@ export default function ViewPost() {
         });
 
         window.location.reload();
-      } else {
-        alert("You do not have permission to delete this comment.");
       }
     } catch (error) {
       console.error("Error deleting comment:", error.message);
@@ -140,6 +141,7 @@ export default function ViewPost() {
           <button className="commentButton" onClick={handleAddComment}>
             Add comment
           </button>
+          {show ? <p>Enter a comment first</p> : null}
         </div>
 
         <div className="commentContainer">
