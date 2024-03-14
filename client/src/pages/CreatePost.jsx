@@ -70,8 +70,8 @@ export default function CreatePost() {
         />
         <label htmlFor="email">Content: </label>
 
-        <input
-          className="custom-input"
+        <textarea
+          className="custom-input-content"
           type="text"
           placeholder="Content"
           value={postBody}

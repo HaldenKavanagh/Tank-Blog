@@ -1,17 +1,23 @@
 import "../styles/Profile.css";
+
 import { FaPencil } from "react-icons/fa6";
 import { FaTrash, FaCommentAlt } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import AuthService from "../utils/auth";
+
 import { useQuery } from "@apollo/client";
 import { GET_LOGGED_IN_USER } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import { DELETE_POST } from "../utils/mutations";
 
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
 export default function Profile() {
-  const redirectToLogin = () => {
-    window.location.href = "/login";
-  };
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleViewPost = (postId) => {
     window.location.href = `/view-post/${postId}`;
@@ -53,8 +59,7 @@ export default function Profile() {
         ...me,
         posts: updatedPosts,
       });
-
-      alert("Post deleted successfully!");
+      handleShow();
     } catch (error) {
       console.error("Error deleting post:", error.message);
 
@@ -96,6 +101,21 @@ export default function Profile() {
       ) : (
         <p className="noPostsMessage">You have no posts yet.</p>
       )}
+      <Modal
+        className="modal-container"
+        show={show}
+        onHide={handleClose}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Post deleted successfully</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Button className="createButton" onClick={handleClose}>
+            close
+          </Button>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
