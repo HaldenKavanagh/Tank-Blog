@@ -87,7 +87,7 @@ export default function Feed() {
             Login
           </Button>
           <Button className="createButton" onClick={handleClose}>
-            Back
+            Close
           </Button>
         </Modal.Body>
       </Modal>

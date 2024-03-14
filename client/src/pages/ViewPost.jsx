@@ -13,6 +13,11 @@ import Modal from "react-bootstrap/Modal";
 import AuthService from "../utils/auth";
 
 export default function ViewPost() {
+
+  const redirectToLogin = () => {
+    window.location.href = "/login";
+  }; 
+  
   const [show, setShow] = useState(false);
 
   const handleShow = () => {

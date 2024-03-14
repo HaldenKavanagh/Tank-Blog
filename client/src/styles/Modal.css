@@ -9,7 +9,7 @@
 }
 
 .modal-content {
-  background-color: var(--medium);
+  background-color: var(--darkest);
   border: 5px solid var(--lightest);
   border-radius: 10px;
 }

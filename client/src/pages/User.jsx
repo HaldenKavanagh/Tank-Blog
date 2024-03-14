@@ -12,6 +12,10 @@ export default function User() {
     window.location.href = "/profile";
   };
 
+  const redirectToLogin = () => {
+    window.location.href = "/login";
+  };
+
   const handleViewPost = (postId) => {
     window.location.href = `/view-post/${postId}`;
   };
@@ -36,7 +40,7 @@ export default function User() {
           }
         } else {
           // Allow non-logged-in users to view the page
-          alert("Non-logged in users can view this page.");
+          redirectToLogin();
         }
       } catch (error) {
         console.error("Error checking authentication:", error);

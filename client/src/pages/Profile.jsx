@@ -19,13 +19,21 @@ export default function Profile() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const redirectToLogin = () => {
+    window.location.href = "/login";
+  };
+
   const handleViewPost = (postId) => {
     window.location.href = `/view-post/${postId}`;
   };
 
+  const handleEditPost = (postId) => {
+    window.location.href = `/edit-post/${postId}`;
+  };
+
   const { loading, error, data } = useQuery(GET_LOGGED_IN_USER);
 
-  const [me, setMe] = useState({}); // State variable to store user data
+  const [me, setMe] = useState({});  
 
   useEffect(() => {
     if (!AuthService.loggedIn()) {
@@ -34,7 +42,7 @@ export default function Profile() {
   }, []);
 
   useEffect(() => {
-    // Update the user data when it's available
+    
     if (data) {
       setMe(data.me);
     }
@@ -85,7 +93,10 @@ export default function Profile() {
                 Created by {me.username} at {post.createdAt}
               </p>
               <div>
-                <FaPencil className="profileIcons" />
+                <FaPencil
+                  className="profileIcons"
+                  onClick={() => handleEditPost(post._id)}
+                />
                 <FaTrash
                   onClick={() => handleDeletePost(post._id)}
                   className="profileIcons"
