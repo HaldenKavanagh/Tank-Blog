@@ -8,6 +8,8 @@ import { UPDATE_POST } from "../utils/mutations";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
+import AuthService from "../utils/auth";
+
 export default function EditPost() {
   const { postId } = useParams();
   const [postTitle, setPostTitle] = useState("");
@@ -20,6 +22,10 @@ export default function EditPost() {
 
   const handleViewPost = (postId) => {
     window.location.href = `/view-post/${postId}`;
+  };
+
+  const redirectToLogin = () => {
+    window.location.href = "/login";
   };
 
   const { loading, data, error } = useQuery(QUERY_POST, {

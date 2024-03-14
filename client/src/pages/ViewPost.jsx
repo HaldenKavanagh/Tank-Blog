@@ -7,22 +7,12 @@ import { QUERY_POST } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import { ADD_COMMENT, DELETE_COMMENT } from "../utils/mutations";
 import { FaTrash } from "react-icons/fa";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 
 import AuthService from "../utils/auth";
 
 export default function ViewPost() {
-
   const redirectToLogin = () => {
     window.location.href = "/login";
-  }; 
-  
-  const [show, setShow] = useState(false);
-
-  const handleShow = () => {
-    setShow(true);
-    setTimeout(() => setShow(false), 1500); // Hide after 3 seconds
   };
 
   const handleViewUser = (username) => {
@@ -31,6 +21,13 @@ export default function ViewPost() {
 
   const handleViewCommentAuthor = (username) => {
     window.location.href = `/user/${username}`;
+  };
+
+  const [show, setShow] = useState(false);
+
+  const handleShow = () => {
+    setShow(true);
+    setTimeout(() => setShow(false), 1500); 
   };
 
   const { postId } = useParams();

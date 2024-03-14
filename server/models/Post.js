@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 
+const dateFormat = require("../utils/dateFormat");
+
 const commentSchema = new Schema(
   {
     commentId: {
@@ -19,6 +21,7 @@ const commentSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      get: (timestamp) => dateFormat(timestamp),
     },
   },
   {
@@ -28,8 +31,6 @@ const commentSchema = new Schema(
     id: false,
   }
 );
-
-
 
 const postSchema = new Schema(
   {
@@ -48,13 +49,13 @@ const postSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      get: (timestamp) => dateFormat(timestamp),
     },
     username: {
       type: String,
       required: true,
     },
     comments: [commentSchema],
-    
   },
   {
     toJSON: {
@@ -70,9 +71,9 @@ postSchema.virtual("commentCount").get(function () {
 
 // getter function to format the date time
 
-postSchema.path("createdAt").get(function (value) {
-  return value.toLocaleString();
-});
+// postSchema.path("createdAt").get(function (value) {
+//   return value.toLocaleString();
+// });
 
 const Post = model("Post", postSchema);
 
