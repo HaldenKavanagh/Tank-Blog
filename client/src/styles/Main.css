@@ -16,9 +16,10 @@
 
 .button {
   background-color: var(--lightest);
-  color: var(--dark);
-  border: 2px solid var(--lightest);
+  color: var(--darkest);
+  border: 2px solid var(--light);
   padding: 10px 30px;
+  margin: 10px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
@@ -27,10 +28,9 @@
 
 .button:hover {
   background-color: var(--darkest);
-  color: var(--medium);
+  color: var(--light);
+  border: 2px solid var(--lightest);
 }
-
-/* form page styling */
 
 .background {
   min-height: 86vh;
@@ -54,6 +54,12 @@
   margin-bottom: 35px;
 }
 
+.form label {
+  margin-bottom: 5px;
+  color: var(--lightest);
+  font-size: 20px;
+}
+
 .custom-input {
   background-color: var(--light);
   margin: 10px 10px 10px 0px;
@@ -68,4 +74,12 @@
   width: 30vw;
   border-radius: 10px;
   height: 100px;
+}
+
+.page-title {
+  color: var(--lightest);
+  color: var(--lightest);
+  display: flex;
+  justify-content: center;
+  padding: 25px;
 }

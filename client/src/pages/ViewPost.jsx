@@ -1,4 +1,6 @@
-import "../styles/ViewPost.css";
+import "../styles/Main.css";
+import "../styles/Modal.css";
+import "../styles/ViewPost.css"
 
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
@@ -115,7 +117,7 @@ export default function ViewPost() {
   }
 
   return (
-    <div className="background">
+    <div className="viewPost">
       <div className="postContainer">
         <p className="postInfo">
           Created by{" "}

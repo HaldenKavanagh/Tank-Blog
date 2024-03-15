@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 import "../styles/Main.css";
-import "../styles/CreatePost.css";
+import "../styles/Modal.css";
 
 import AuthService from "../utils/auth";
 
@@ -59,8 +59,8 @@ export default function CreatePost() {
 
   return (
     <div className="background">
-      <h1 className="contact-title">Create a Post</h1>
-      <div className="logInForm">
+      <h1 className="page-title">Create a Post</h1>
+      <div className="form">
         <label htmlFor="email">Title: </label>
         <input
           className="custom-input"

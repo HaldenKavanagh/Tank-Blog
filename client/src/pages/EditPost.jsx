@@ -1,4 +1,5 @@
-import "../styles/EditPost.css";
+import "../styles/Main.css";
+import "../styles/Modal.css";
 
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -65,7 +66,7 @@ export default function EditPost() {
   return (
     <div className="background">
       <h1 className="contact-title">Edit Post</h1>
-      <form className="logInForm" onSubmit={handleEditPost}>
+      <form className="form" onSubmit={handleEditPost}>
         <label htmlFor="postTitle">Title:</label>
         <input
           className="custom-input"

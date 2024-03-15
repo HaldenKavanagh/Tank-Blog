@@ -1,4 +1,5 @@
-import "../styles/EditPost.css";
+import "../styles/Main.css";
+import "../styles/Modal.css";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
@@ -70,11 +71,11 @@ export default function EditUser() {
 
   return (
     <div className="background">
-      <h1 className="contact-title">Edit User</h1>
+      <h1 className="contact-title">Edit User:</h1>
       <button className="delete-button" onClick={handleDeleteUser}>
         DELETE ACCOUNT
       </button>
-      <form className="logInForm" onSubmit={handleEditUser}>
+      <form className="form" onSubmit={handleEditUser}>
         <label htmlFor="username">Username:</label>
         <input
           className="custom-input"

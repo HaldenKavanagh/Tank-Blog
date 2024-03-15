@@ -1,3 +1,10 @@
+.viewPost {
+  background-color: var(--darkest);
+  min-height: 86vh;
+  padding: 20px;
+  color: var(--light);
+}
+
 .postContainer {
   border: 2px solid var(--lightest);
   border-radius: 15px;
@@ -37,3 +44,5 @@
   display: flex;
   align-items: center;
 }
+
+

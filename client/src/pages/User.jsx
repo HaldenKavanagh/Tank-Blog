@@ -1,4 +1,5 @@
-import "../styles/User.css";
+import "../styles/Main.css";
+import "../styles/Modal.css";
 
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -57,8 +58,9 @@ export default function User() {
 
       {user && (
         <>
-          <h2 className="userTitle">{user.username}'s Posts</h2>
-          <h2 className="userTitle">{user.bio}</h2>
+          <h1 className="page-title">{user.username}</h1>
+          <p>Bio:</p>
+          <h2> {user.bio}</h2>
 
           {user.posts && user.posts.length > 0 ? (
             <div className="cardContainer">

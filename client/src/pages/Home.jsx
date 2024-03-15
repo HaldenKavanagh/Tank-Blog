@@ -1,5 +1,5 @@
 import "../styles/Main.css";
-import "../styles/Home.css";
+import "../styles/Modal.css";
 
 export default function Home() {
   const redirectLogin = () => {

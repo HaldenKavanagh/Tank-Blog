@@ -1,4 +1,5 @@
-import "../styles/Profile.css";
+import "../styles/Main.css";
+import "../styles/Modal.css";
 
 import { FaPencil } from "react-icons/fa6";
 import { FaTrash, FaCommentAlt } from "react-icons/fa";
@@ -74,18 +75,19 @@ export default function Profile() {
 
   return (
     <div className="background">
-      <div className="accInfo">
-        <h2>Welcome, {me.username}!</h2>
+      <div>
+        <h1 className="page-title">Welcome, {me.username}!</h1>
+
         <p>Email: {me.email}</p>
         <p>Bio: {me.bio}</p>
-        <p onClick={() => handleEditUser(me.username)}>
-          Edit Profile <FaPencil className="profileIcons" />
-        </p>
+        <button className="button" onClick={() => handleEditUser(me.username)}>
+          Edit Profile <FaPencil />
+        </button>
       </div>
 
-      <h3 className="postsTitle">Your Posts:</h3>
+      <h2 className="page-title">Your Posts:</h2>
       {me.posts && me.posts.length > 0 ? (
-        <div className="cardContainer">
+        <div className="container">
           {me.posts.map((post) => (
             <div className="postCard" key={post._id}>
               <p className="postTitle">{post.postTitle}</p>

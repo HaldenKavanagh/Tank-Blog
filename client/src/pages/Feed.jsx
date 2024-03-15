@@ -1,3 +1,5 @@
+import "../styles/Main.css";
+import "../styles/Modal.css";
 import "../styles/Feed.css";
 
 import React, { useState } from "react";

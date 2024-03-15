@@ -4,7 +4,7 @@ import { CREATE_USER, LOGIN_USER } from "../utils/mutations";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-import "../styles/CreateAcc.css";
+import "../styles/Main.css";
 import "../styles/Modal.css";
 
 function CreateAccount() {
@@ -99,7 +99,7 @@ function CreateAccount() {
 
   return (
     <div className="background">
-      <h1 className="contact-title">Create an account</h1>
+      <h1 className="page-title">Create an account</h1>
       <div className="form">
         <form onSubmit={handleCreateUser}>
           <label htmlFor="username">Username:</label>

@@ -1,4 +1,5 @@
-import "../styles/Login.css";
+import "../styles/Main.css";
+import "../styles/Modal.css";
 
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
@@ -55,7 +56,7 @@ function Login() {
 
   return (
     <div className="background">
-      <h1 className="contact-title">Login</h1>
+      <h1 className="page-title">Login</h1>
       <div className="form">
         <label htmlFor="email">Email:</label>
         <input
