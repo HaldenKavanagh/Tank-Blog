@@ -59,8 +59,8 @@ export default function User() {
       {user && (
         <>
           <h1 className="page-title">{user.username}</h1>
-          <p>Bio:</p>
-          <h2> {user.bio}</h2>
+          
+          <h2 className="userInfo">Bio:  {user.bio}</h2>
 
           {user.posts && user.posts.length > 0 ? (
             <div className="cardContainer">

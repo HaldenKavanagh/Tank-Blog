@@ -1,6 +1,6 @@
 import "../styles/Main.css";
 import "../styles/Modal.css";
-import "../styles/ViewPost.css"
+import "../styles/ViewPost.css";
 
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";

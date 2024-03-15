@@ -18,3 +18,14 @@
   justify-content: center;
   width: 20vw;
 }
+
+.userTitle {
+  color: var(--lightest);
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.userInfo {
+  color: var(--lightest);
+}

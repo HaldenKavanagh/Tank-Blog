@@ -89,6 +89,8 @@ function Login() {
           show={show}
           onHide={handleClose}
           centered
+          backdrop="static"
+          keyboard={false}
         >
           <Modal.Header closeButton>
             <Modal.Title>
