@@ -54,7 +54,7 @@ function Login() {
   };
 
   return (
-    <div className="logIn">
+    <div className="background">
       <h1 className="contact-title">Login</h1>
       <div className="form">
         <label htmlFor="email">Email:</label>

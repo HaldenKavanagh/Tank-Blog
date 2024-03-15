@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import AuthService from "../utils/auth";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import "../styles/Main.css";
 import "../styles/NavTabs.css";
 
 function NavTabs() {
@@ -102,10 +103,10 @@ function NavTabs() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Button className="createButton" onClick={redirectToLogin}>
+          <Button className="button" onClick={redirectToLogin}>
             Login
           </Button>
-          <Button className="createButton" onClick={redirectToFeed}>
+          <Button className="button" onClick={redirectToFeed}>
             Back to Feed
           </Button>
         </Modal.Body>

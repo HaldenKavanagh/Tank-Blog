@@ -30,6 +30,17 @@
   color: var(--medium);
 }
 
+/* form page styling */
+
+.background {
+  min-height: 86vh;
+  background-color: var(--darkest);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .form {
   display: flex;
   flex-direction: column;

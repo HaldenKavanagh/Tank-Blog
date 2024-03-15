@@ -27,7 +27,7 @@ export default function ViewPost() {
 
   const handleShow = () => {
     setShow(true);
-    setTimeout(() => setShow(false), 1500); 
+    setTimeout(() => setShow(false), 1500);
   };
 
   const { postId } = useParams();
@@ -115,7 +115,7 @@ export default function ViewPost() {
   }
 
   return (
-    <div className="viewPost">
+    <div className="background">
       <div className="postContainer">
         <p className="postInfo">
           Created by{" "}

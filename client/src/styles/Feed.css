@@ -1,7 +1,4 @@
-.feedPage {
-  background-color: var(--darkest);
-  min-height: 86vh;
-}
+
 
 .container {
   display: flex;

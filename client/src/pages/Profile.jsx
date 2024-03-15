@@ -73,7 +73,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="profilePage">
+    <div className="background">
       <div className="accInfo">
         <h2>Welcome, {me.username}!</h2>
         <p>Email: {me.email}</p>
@@ -123,7 +123,7 @@ export default function Profile() {
           <Modal.Title>Post deleted successfully</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Button className="createButton" onClick={handleClose}>
+          <Button className="button" onClick={handleClose}>
             close
           </Button>
         </Modal.Body>

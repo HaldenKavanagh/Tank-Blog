@@ -51,7 +51,7 @@ export default function User() {
   }, [username]);
 
   return (
-    <div className="User">
+    <div className="background">
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
 

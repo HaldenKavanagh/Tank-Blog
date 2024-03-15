@@ -1,7 +1,4 @@
-.User {
-  background: var(--darkest);
-  min-height: 86vh;
-}
+
 
 .userTitle {
   color: var(--lightest);

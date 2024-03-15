@@ -34,7 +34,7 @@ export default function Feed() {
   };
 
   return (
-    <div className="feedPage">
+    <div className="background">
       <div className="container">
         {loading ? (
           <div>Loading...</div>
@@ -83,10 +83,10 @@ export default function Feed() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Button className="createButton" onClick={redirectToLogin}>
+          <Button className="button" onClick={redirectToLogin}>
             Login
           </Button>
-          <Button className="createButton" onClick={handleClose}>
+          <Button className="button" onClick={handleClose}>
             Close
           </Button>
         </Modal.Body>

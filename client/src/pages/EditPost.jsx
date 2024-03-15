@@ -63,7 +63,7 @@ export default function EditPost() {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="createPostPage">
+    <div className="background">
       <h1 className="contact-title">Edit Post</h1>
       <form className="logInForm" onSubmit={handleEditPost}>
         <label htmlFor="postTitle">Title:</label>
@@ -97,12 +97,12 @@ export default function EditPost() {
 
         <Modal.Body>
           <Button
-            className="createButton"
+            className="button"
             onClick={() => handleViewPost(postId)}
           >
             View Post
           </Button>
-          <Button className="createButton" onClick={handleClose}>
+          <Button className="button" onClick={handleClose}>
             Close
           </Button>
         </Modal.Body>

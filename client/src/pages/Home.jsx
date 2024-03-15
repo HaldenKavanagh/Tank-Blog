@@ -10,7 +10,7 @@ export default function Home() {
   };
 
   return (
-    <div className="homePage">
+    <div className="background">
       <h1>Welcome to the Tank Blog</h1>
       
       <h2>
@@ -18,7 +18,7 @@ export default function Home() {
           Login
         </button>
         or
-        <button className="createButton" onClick={redirectCreateAcc}>
+        <button className="button" onClick={redirectCreateAcc}>
           Create An Account
         </button>
         to get the full experience!

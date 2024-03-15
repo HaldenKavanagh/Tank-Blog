@@ -98,7 +98,7 @@ function CreateAccount() {
   };
 
   return (
-    <div className="createAccountPage ">
+    <div className="background">
       <h1 className="contact-title">Create an account</h1>
       <div className="form">
         <form onSubmit={handleCreateUser}>
@@ -144,7 +144,7 @@ function CreateAccount() {
             />
           </div>
 
-          <button className="submit-btn" type="submit" disabled={loading}>
+          <button className="button" type="submit" disabled={loading}>
             {loading ? "Creating Account..." : "Create Account"}
           </button>
           <button className="button" onClick={redirectToLogin}>

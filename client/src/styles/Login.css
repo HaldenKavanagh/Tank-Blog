@@ -1,10 +1,3 @@
-.logIn {
-  background-color: var(--darkest);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 86vh;
-}
 
 .logInForm {
   display: flex;

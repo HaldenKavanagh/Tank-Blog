@@ -69,7 +69,7 @@ export default function EditUser() {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="EditUser">
+    <div className="background">
       <h1 className="contact-title">Edit User</h1>
       <button className="delete-button" onClick={handleDeleteUser}>
         DELETE ACCOUNT
