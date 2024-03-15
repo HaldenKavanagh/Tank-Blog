@@ -76,7 +76,7 @@ export default function EditPost() {
         />
         <label htmlFor="postBody">Body:</label>
         <textarea
-          className="custom-input-content"
+          className="custom-input-large"
           id="postBody"
           value={postBody}
           onChange={(e) => setPostBody(e.target.value)}

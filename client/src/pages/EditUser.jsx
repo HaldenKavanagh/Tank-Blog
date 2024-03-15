@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
-import { UPDATE_USER } from "../utils/mutations";
+import { UPDATE_USER, DELETE_USER } from "../utils/mutations";
+
+import AuthService from "../utils/auth";
 
 export default function EditUser() {
   const { username } = useParams();
@@ -23,6 +25,7 @@ export default function EditUser() {
   }, [data]);
 
   const [updateUser] = useMutation(UPDATE_USER);
+  const [deleteUser] = useMutation(DELETE_USER);
 
   const handleEditUser = async (e) => {
     e.preventDefault();
@@ -41,12 +44,36 @@ export default function EditUser() {
     }
   };
 
+  const handleDeleteUser = async () => {
+    const confirmation = window.confirm(
+      "Are you sure you want to delete your account?"
+    );
+
+    if (confirmation) {
+      try {
+        await deleteUser({
+          variables: {
+            userId: data.getUser._id,
+          },
+        });
+        alert("User deleted successfully!");
+        AuthService.logout();
+        window.location.href = "/feed";
+      } catch (error) {
+        console.error("Error deleting user:", error.message);
+      }
+    }
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div className="EditUser">
       <h1 className="contact-title">Edit User</h1>
+      <button className="delete-button" onClick={handleDeleteUser}>
+        DELETE ACCOUNT
+      </button>
       <form className="logInForm" onSubmit={handleEditUser}>
         <label htmlFor="username">Username:</label>
         <input
@@ -60,7 +87,7 @@ export default function EditUser() {
         />
         <label htmlFor="bio">Bio:</label>
         <textarea
-          className="custom-input-content"
+          className="custom-input-large"
           id="bio"
           value={userData.bio}
           onChange={(e) => setUserData({ ...userData, bio: e.target.value })}
