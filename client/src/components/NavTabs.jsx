@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import AuthService from "../utils/auth";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import "../styles/NavTabs.css";
 
 function NavTabs() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const location = useLocation();
 
   const getPageName = (pathname) => {
@@ -38,12 +45,14 @@ function NavTabs() {
 
   const redirectToLogin = () => {
     window.location.href = "/login";
-    alert("Login or create an account to access this page");
+  };
+  const redirectToFeed = () => {
+    window.location.href = "/feed";
   };
 
   const checkLoggedIn = () => {
     if (!AuthService.loggedIn()) {
-      redirectToLogin();
+      handleShow();
     }
   };
   return (
@@ -81,6 +90,26 @@ function NavTabs() {
         <p>Profile</p>
       </Link>
       {renderAuthButton()}
+      <Modal
+        className="modal-container"
+        show={show}
+        onHide={handleClose}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>
+            You must Login or create an account to visit this page
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Button className="createButton" onClick={redirectToLogin}>
+            Login
+          </Button>
+          <Button className="createButton" onClick={redirectToFeed}>
+            Back to Feed
+          </Button>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

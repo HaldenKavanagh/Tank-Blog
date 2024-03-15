@@ -33,16 +33,9 @@ export default function Profile() {
 
   const { loading, error, data } = useQuery(GET_LOGGED_IN_USER);
 
-  const [me, setMe] = useState({});  
+  const [me, setMe] = useState({});
 
   useEffect(() => {
-    if (!AuthService.loggedIn()) {
-      redirectToLogin();
-    }
-  }, []);
-
-  useEffect(() => {
-    
     if (data) {
       setMe(data.me);
     }
