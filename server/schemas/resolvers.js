@@ -189,8 +189,12 @@ const resolvers = {
         { new: true }
       );
     },
-    updateUser: async (_, { userId, username }) => {
-      return await User.findByIdAndUpdate(userId, { username }, { new: true });
+    updateUser: async (_, { userId, username, bio }) => {
+      return await User.findByIdAndUpdate(
+        userId,
+        { username, bio },
+        { new: true }
+      );
     },
     updateComment: async (_, { postId, commentId, commentBody }) => {
       const post = await Post.findById(postId);

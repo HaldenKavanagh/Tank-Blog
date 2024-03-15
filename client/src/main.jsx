@@ -11,6 +11,7 @@ import CreateAcc from "./pages/CreateAcc";
 import ViewPost from "./pages/ViewPost";
 import User from "./pages/User";
 import EditPost from "./pages/EditPost";
+import EditUser from "./pages/EditUser";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/edit-post/:postId",
         element: <EditPost />,
+      },
+      {
+        path: "/edit-user/:username",
+        element: <EditUser />,
       },
     ],
   },

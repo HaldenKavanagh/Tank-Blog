@@ -31,6 +31,10 @@ export default function Profile() {
     window.location.href = `/edit-post/${postId}`;
   };
 
+  const handleEditUser = (username) => {
+    window.location.href = `/edit-user/${username}`;
+  };
+
   const { loading, error, data } = useQuery(GET_LOGGED_IN_USER);
 
   const [me, setMe] = useState({});
@@ -73,6 +77,10 @@ export default function Profile() {
       <div className="accInfo">
         <h2>Welcome, {me.username}!</h2>
         <p>Email: {me.email}</p>
+        <p>Bio: {me.bio}</p>
+        <p onClick={() => handleEditUser(me.username)}>
+          Edit Profile <FaPencil className="profileIcons" />
+        </p>
       </div>
 
       <h3 className="postsTitle">Your Posts:</h3>

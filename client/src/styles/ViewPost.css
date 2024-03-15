@@ -45,15 +45,6 @@
   align-items: center;
 }
 
-.commentButton {
-  background-color: var(--lightest);
-  color: var(--light);
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
 
-.button:hover {
-  background-color: var(--dark);
-}
+
+

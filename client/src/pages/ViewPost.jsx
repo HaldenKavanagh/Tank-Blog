@@ -140,7 +140,7 @@ export default function ViewPost() {
             value={commentBody}
             onChange={(e) => setCommentBody(e.target.value)}
           />
-          <button className="commentButton" onClick={handleAddComment}>
+          <button className="button" onClick={handleAddComment}>
             Add comment
           </button>
           {show ? <p>Enter a comment first</p> : null}

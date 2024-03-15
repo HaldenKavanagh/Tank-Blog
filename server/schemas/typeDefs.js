@@ -56,7 +56,7 @@ const typeDefs = `
 
     deleteUser(userId: ID!): User
     createUser(username: String!, email: String!, password: String!, bio: String!): Auth
-    updateUser(userId: ID!, username: String!): User
+    updateUser(userId: ID!, username: String!, bio: String!): User
 
     addFriend(userId: ID!, friendId: ID!): User
     removeFriend(userId: ID!, friendId: ID!): User

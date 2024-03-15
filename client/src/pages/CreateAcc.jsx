@@ -100,7 +100,7 @@ function CreateAccount() {
   return (
     <div className="createAccountPage ">
       <h1 className="contact-title">Create an account</h1>
-      <div className="createAccount">
+      <div className="form">
         <form onSubmit={handleCreateUser}>
           <label htmlFor="username">Username:</label>
           <div>
@@ -147,7 +147,7 @@ function CreateAccount() {
           <button className="submit-btn" type="submit" disabled={loading}>
             {loading ? "Creating Account..." : "Create Account"}
           </button>
-          <button className="createButton" onClick={redirectToLogin}>
+          <button className="button" onClick={redirectToLogin}>
             Back to login
           </button>
         </form>
@@ -162,13 +162,13 @@ function CreateAccount() {
             <Modal.Title>Thanks for Joining ... where to now?</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Button className="createButton" onClick={redirectToProfile}>
+            <Button className="button" onClick={redirectToProfile}>
               View Profile
             </Button>
-            <Button className="createButton" onClick={redirectToFeed}>
+            <Button className="button" onClick={redirectToFeed}>
               View Feed
             </Button>
-            <Button className="createButton" onClick={redirectToCreatePost}>
+            <Button className="button" onClick={redirectToCreatePost}>
               Create a Post
             </Button>
           </Modal.Body>

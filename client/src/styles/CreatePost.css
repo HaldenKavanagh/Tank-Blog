@@ -5,11 +5,3 @@
   align-items: center;
   height: 86vh;
 }
-
-.custom-input-content {
-  background-color: var(--light);
-  margin: 10px 10px 10px 0px;
-  width: 30vw;
-  border-radius: 10px;
-  height: 100px;
-}

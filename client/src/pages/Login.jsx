@@ -56,7 +56,7 @@ function Login() {
   return (
     <div className="logIn">
       <h1 className="contact-title">Login</h1>
-      <div className="logInForm">
+      <div className="form">
         <label htmlFor="email">Email:</label>
         <input
           className="custom-input"
@@ -79,7 +79,7 @@ function Login() {
           Login
         </button>
 
-        <button className="createButton" onClick={handleCreateAcc}>
+        <button className="button" onClick={handleCreateAcc}>
           Create An Account
         </button>
 
@@ -90,13 +90,15 @@ function Login() {
           centered
         >
           <Modal.Header closeButton>
-            <Modal.Title>Error logging in, make sure to check all fields</Modal.Title>
+            <Modal.Title>
+              Error logging in, make sure to check all fields
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Button className="createButton" onClick={handleCreateAcc}>
+            <Button className="button" onClick={handleCreateAcc}>
               Create an Account
             </Button>
-            <Button className="createButton" onClick={handleClose}>
+            <Button className="button" onClick={handleClose}>
               close
             </Button>
           </Modal.Body>

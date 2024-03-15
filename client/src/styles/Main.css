@@ -11,3 +11,50 @@
   margin: 0;
   padding: 0;
 }
+
+/* button styling */
+
+.button {
+  background-color: var(--lightest);
+  color: var(--dark);
+  border: 2px solid var(--lightest);
+  padding: 10px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: var(--darkest);
+  color: var(--medium);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark);
+  padding: 20px;
+  border: 5px solid var(--light);
+  border-radius: 10px;
+  width: 40vw;
+  margin-bottom: 35px;
+}
+
+.custom-input {
+  background-color: var(--light);
+  margin: 10px 10px 10px 0px;
+  width: 30vw;
+  border-radius: 10px;
+  height: 40px;
+}
+
+.custom-input-large {
+  background-color: var(--light);
+  margin: 10px 10px 10px 0px;
+  width: 30vw;
+  border-radius: 10px;
+  height: 100px;
+}

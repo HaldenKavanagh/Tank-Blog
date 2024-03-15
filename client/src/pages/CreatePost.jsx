@@ -71,7 +71,7 @@ export default function CreatePost() {
         <label htmlFor="email">Content: </label>
 
         <textarea
-          className="custom-input-content"
+          className="custom-input-large"
           type="text"
           placeholder="Content"
           value={postBody}
@@ -91,10 +91,10 @@ export default function CreatePost() {
           <Modal.Title>Post created Successfully!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Button className="createButton" onClick={redirectToFeed}>
+          <Button className="button" onClick={redirectToFeed}>
             View Feed
           </Button>
-          <Button className="createButton" onClick={redirectToProfile}>
+          <Button className="button" onClick={redirectToProfile}>
             View Profile
           </Button>
         </Modal.Body>

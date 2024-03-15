@@ -56,11 +56,11 @@ export const CREATE_POST = gql`
 `;
 
 export const UPDATE_USER = gql`
-  mutation updateUser($username: String!) {
-    updateUser(username: $username) {
+  mutation UpdateUser($userId: ID!, $username: String!, $bio: String!) {
+    updateUser(userId: $userId, username: $username, bio: $bio) {
       _id
+      bio
       username
-      email
     }
   }
 `;
