@@ -1,7 +1,8 @@
 [
-    {
-      "username": "userOne",
-      "email": "User1@email.com",
-      "password": "supersecret"
-    }
-  ]
+  {
+    "username": "userOne",
+    "email": "User1@email.com",
+    "password": "supersecret",
+    "bio": "i am user 1 and this is my bio"
+  }
+]

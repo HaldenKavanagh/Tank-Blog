@@ -55,6 +55,7 @@ export const QUERY_USER = gql`
       _id
       email
       username
+      bio
       posts {
         _id
         postBody
@@ -71,6 +72,7 @@ export const GET_LOGGED_IN_USER = gql`
       _id
       username
       email
+      bio
       posts {
         _id
         postTitle

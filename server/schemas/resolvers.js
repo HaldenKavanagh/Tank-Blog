@@ -94,16 +94,16 @@ const resolvers = {
         throw new Error(error.message);
       }
     },
-    createUser: async (parent, { username, email, password }) => {
+    createUser: async (parent, { username, email, password, bio }) => {
       try {
-        if (!username || !email || !password) {
+        if (!username || !email || !password || !bio) {
           throw new Error("All fields are required.");
         }
         if (password.length < 5) {
           throw new Error("Password must be at least 5 characters long.");
         }
 
-        const user = await User.create({ username, email, password });
+        const user = await User.create({ username, email, password, bio });
 
         const token = signToken(user);
 

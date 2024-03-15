@@ -5,6 +5,7 @@ const typeDefs = `
     email: String!
     following: [User]!
     password: String
+    bio: String!
     posts: [Post]!
   }
 
@@ -54,7 +55,7 @@ const typeDefs = `
     deleteComment(postId: ID!, commentId: ID!): Post
 
     deleteUser(userId: ID!): User
-    createUser(username: String!, email: String!, password: String!): Auth
+    createUser(username: String!, email: String!, password: String!, bio: String!): Auth
     updateUser(userId: ID!, username: String!): User
 
     addFriend(userId: ID!, friendId: ID!): User

@@ -11,6 +11,7 @@ function CreateAccount() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [bio, setBio] = useState("");
 
   const [show, setShow] = useState(false);
 
@@ -48,9 +49,9 @@ function CreateAccount() {
     e.preventDefault();
 
     try {
-      console.log("Creating user with:", username, email, password);
+      console.log("Creating user with:", username, email, password, bio);
       const { data } = await createUser({
-        variables: { username, password, email },
+        variables: { username, password, email, bio },
       });
 
       console.log("Server Response:", data);
@@ -119,6 +120,16 @@ function CreateAccount() {
               className="custom-input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <label htmlFor="email">Bio:</label>
+          <div>
+            <input
+              type="text"
+              placeholder="Bio"
+              className="custom-input"
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
             />
           </div>
 
