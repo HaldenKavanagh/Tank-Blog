@@ -76,9 +76,8 @@ export default function Profile() {
 
   return (
     <div className="background">
-      <div>
-        <h1 className="page-title">Welcome, {me.username}!</h1>
-
+      <h1 className="page-title">Welcome, {me.username}!</h1>
+      <div className="user-info-container">
         <h2 className="userInfo">Email: {me.email}</h2>
         <h2 className="userInfo">Bio: {me.bio}</h2>
         <button className="button" onClick={() => handleEditUser(me.username)}>

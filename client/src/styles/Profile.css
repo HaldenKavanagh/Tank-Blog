@@ -6,19 +6,6 @@
   margin-top: 20px;
 }
 
-.profileCard {
-  border-radius: 12px;
-  background: var(--dark);
-  border: 3px solid var(--light);
-  padding: 38px;
-  margin: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 20vw;
-}
-
 .userTitle {
   color: var(--lightest);
   display: flex;
@@ -28,4 +15,16 @@
 
 .userInfo {
   color: var(--lightest);
+}
+
+.user-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid var(--lightest);
+  background: var(--dark);
+  border-radius: 9px;
+  padding: 20px;
+  width: 35vw;
 }

@@ -71,8 +71,8 @@ export default function EditUser() {
 
   return (
     <div className="background">
-      <h1 className="contact-title">Edit User:</h1>
-      <button className="delete-button" onClick={handleDeleteUser}>
+      <h1 className="page-title">Edit User:</h1>
+      <button className="button" onClick={handleDeleteUser}>
         DELETE ACCOUNT
       </button>
       <form className="form" onSubmit={handleEditUser}>
