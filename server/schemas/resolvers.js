@@ -66,12 +66,13 @@ const resolvers = {
         throw new Error(error.message);
       }
     },
-    createPost: async (_, { postBody, postTitle, username }) => {
+    createPost: async (_, { postBody, postTitle, username, imagePath }) => {
       try {
         const newPost = new Post({
           postBody,
           postTitle,
           username,
+          imagePath,
         });
 
         await newPost.save();

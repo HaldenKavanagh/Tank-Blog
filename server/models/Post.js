@@ -46,6 +46,9 @@ const postSchema = new Schema(
       required: true,
       maxlength: 50,
     },
+    imagePath: {
+      type: String,
+    },
     createdAt: {
       type: Date,
       default: Date.now,

@@ -12,12 +12,10 @@ import AuthService from "../utils/auth";
 
 export default function CreatePost() {
   const redirectToFeed = () => {
-    // Redirect to the login page
     window.location.href = "/feed";
   };
 
   const redirectToProfile = () => {
-    // Redirect to the login page
     window.location.href = "/profile";
   };
 
@@ -28,6 +26,7 @@ export default function CreatePost() {
   }, []);
 
   const [username, setUsername] = useState("");
+  const [image, setImage] = useState(null);
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
 
@@ -37,15 +36,37 @@ export default function CreatePost() {
   const handleShow = () => setShow(true);
 
   console.log(username);
-  const [createPost, { loading, error }] = useMutation(CREATE_POST);
+  const [createPost] = useMutation(CREATE_POST);
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
 
     try {
-      console.log("Creating Post with:", username, postTitle, postBody);
+      if (!image) {
+        console.error("Please select an image");
+        return;
+      }
+
+      const imageFormData = new FormData();
+      imageFormData.append("image", image);
+
+      const response = await fetch("http://localhost:3001/upload", {
+        method: "POST",
+        body: imageFormData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to upload image");
+      }
+
+      const imagePath = await response.text();
+
       const { data } = await createPost({
-        variables: { username, postTitle, postBody },
+        variables: { username, postTitle, postBody, imagePath },
       });
 
       const post = data?.createPost?.post;
@@ -78,6 +99,7 @@ export default function CreatePost() {
           value={postBody}
           onChange={(e) => setPostBody(e.target.value)}
         />
+        <input type="file" accept="image/*" onChange={handleImageChange} />
         <button className="button" onClick={handleCreatePost}>
           Create Post
         </button>

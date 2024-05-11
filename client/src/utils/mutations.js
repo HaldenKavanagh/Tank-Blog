@@ -41,16 +41,19 @@ export const CREATE_POST = gql`
     $postBody: String!
     $postTitle: String!
     $username: String!
+    $imagePath: String!
   ) {
     createPost(
       postBody: $postBody
       postTitle: $postTitle
       username: $username
+      imagePath: $imagePath
     ) {
       _id
       createdAt
       postBody
       postTitle
+      imgePath
     }
   }
 `;

@@ -21,6 +21,7 @@ const typeDefs = `
     _id: ID!
     postBody: String!
     postTitle: String!
+    imagePath: String!
     createdAt: String!
     username: String!
     comments: [Comment]!
@@ -46,7 +47,7 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     logout: Message
 
-    createPost(postBody: String!, postTitle: String!, username: String!): Post
+    createPost(postBody: String!, postTitle: String!, imagePath: String!, username: String!): Post
     updatePost(postId: ID!, postBody: String!, postTitle: String!): Post
     deletePost(postId: ID!): Post
 
